@@ -1,8 +1,9 @@
 package cinema;
 import javax.swing.JOptionPane;
 public class Filme {
-    String nome, gen, ator;
-    int tempo, idade;
+    String nome, gen, ator, dur;
+    int tempo, idade, id;
+    boolean classific;
     
     void atribuirNome (String valor)
     {
@@ -48,4 +49,25 @@ public class Filme {
     {
         return ator;
     }  
+    
+    String teste_duracao (){
+        if (tempo > 60){
+            dur = " Longa Metragem"; 
+        }
+        else{
+            dur = " Curta Metragem";
+        }
+        return dur;
+    }
+  
+    boolean teste_idade (int id){
+         if (id < idade){
+             classific = false;
+         }
+         else{
+             classific = true;
+         }
+         return classific;
+    }
 }
+
