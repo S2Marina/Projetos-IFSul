@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 public class Cinema {
     public static void main(String[] args) {
         Filme f = new Filme();
+        Ator a = new Ator();
         String nome, ator, gen;
         int tempo = 0, idade = 0, id;
         boolean classific = false;
@@ -21,10 +22,10 @@ public class Cinema {
         gen = JOptionPane.showInputDialog(" Informe o gênero do filme:");
         f.atribuirGenero (gen);
         
-        ator = JOptionPane.showInputDialog(" Informe o nome dos atores:"); 
-        f.atribuirAtores (ator);        
+        ator = JOptionPane.showInputDialog(" Informe o nome do ator pricipal:"); 
+        f.atribuirAtores (ator);
         
-        JOptionPane.showMessageDialog(null, " Nome do filme: " +  nome + "\n Atores principais: " + ator + "\n Duração: " + tempo + "\n Gênero: " + gen + "\n Classificação indicativa:" + idade); // saída de dados com janelinha \o/
+        JOptionPane.showMessageDialog(null, " Nome do filme: " +  nome + "\n Ator principal: " + ator + "\n Duração: " + tempo + "\n Gênero: " + gen + "\n Classificação indicativa:" + idade); // saída de dados com janelinha \o/
         
         JOptionPane.showMessageDialog(null,f.teste_duracao());                
         
