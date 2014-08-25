@@ -1,20 +1,17 @@
 package cinema;
-
-import javax.swing.JOptionPane;
-
 public class Ator {
-   String ator, data, nac;
+   String nome, data, nac;
    Double cache;
    int filme, ano;
    boolean oscar;
    
     void atribuirNome (String valor)
     {
-        ator = valor;
+        nome = valor;
     }
     String retornarNome()
     {
-        return ator;
+        return nome;
     }
     
      void atribuirData (String valor)
@@ -60,11 +57,6 @@ public class Ator {
     Integer retornarFilme_ano()
     {
         return ano;
-    }
-    
-    Boolean teste_oscar (){
-        oscar = Boolean.parseBoolean(JOptionPane.showInputDialog(nome + " ganhou o oscar? ")); 
-        return oscar;
     }
     
     
