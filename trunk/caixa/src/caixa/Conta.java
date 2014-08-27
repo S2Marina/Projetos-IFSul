@@ -14,12 +14,12 @@ public class Conta {
     }
     
     Boolean Sacar (Double saque){
-        if (ativa == false || saque > saldo){
-            return false;
-        }
-         else{
+        if (ativa == true && saldo >= saque){
             saldo = saldo - saque;
             return true;
+        }
+         else{
+            return false;
         }
     }
     
