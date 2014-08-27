@@ -1,23 +1,34 @@
-package caixa;
+package caixa.v2;
 
 import javax.swing.JOptionPane;
 
-public class Caixa {
+public class CaixaV2 {
     public static void main(String[] args) {
-        Conta c = new Conta();
-        int op = 0, x = 0, num, agencia;
-        String nome;
-        double valor, saldo = 0;
-        Boolean saque, deposito, ativa = true;
+       Conta c = new Conta();
+       Cliente cl = new Cliente();
+        int op = 0, x = 0, num, agencia, n;
+        String nome, end, nasc = "", cpf;
+        double valor = 0, saldo = 0;
+        Boolean saque, deposito, ativa = true, pend;
         
         do{
         op = Integer.parseInt(JOptionPane.showInputDialog(" Menu:\n(1) Abrir conta\n(2) Sacar\n(3) Depositar\n(4) Saldo\n(5) Fechar conta\n(0) Sair"));
         switch (op){
             case 1:{
               nome = JOptionPane.showInputDialog(" Informe seu nome:");
+              end = JOptionPane.showInputDialog(" Informe seu endereço:");
+              nasc = JOptionPane.showInputDialog(" Informe sua data de nascimento:");
+              cpf = JOptionPane.showInputDialog(" Informe seu cpf:");
               num = Integer.parseInt(JOptionPane.showInputDialog(" Informe o número da conta:"));
               agencia = Integer.parseInt(JOptionPane.showInputDialog(" Informe o número da agência:"));
+              
               c.abrirConta(nome, num, agencia);  
+              cl.setNome(nome);
+              cl.setEnd(end);
+              cl.setNasc(nasc);
+              cl.setCpf(cpf);
+              cl.setSerasa(false);
+              cl.setSpc(false);
               JOptionPane.showMessageDialog(null, " Sua conta foi criada com sucesso!!!");
               break;
             }
@@ -34,7 +45,7 @@ public class Caixa {
             }
             case 3:{
                 valor = Double.parseDouble(JOptionPane.showInputDialog(" Informe o valor do depósito:"));
-                deposito = c.Sacar(valor);
+                deposito = c.Depositar(valor);
                 if (deposito == true){
                   JOptionPane.showMessageDialog(null, " Depósito realizado com sucesso!!!");  
                 }
@@ -44,7 +55,11 @@ public class Caixa {
                 break;
             }
             case 4:{
-                c.retornarSaldo();
+                saldo = c.retornarSaldo();
+                pend = cl.verificaPendencias();
+                if (pend = true){
+                    JOptionPane.showMessageDialog(null, " Você está negativado!!! ");
+                }
                 JOptionPane.showMessageDialog(null, " Seu saldo é de R$ " + saldo);   
                 break;
             }
@@ -58,6 +73,8 @@ public class Caixa {
             }
         }
         }while (x == 0);
+        
+    
     }
     
 }
