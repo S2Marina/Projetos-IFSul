@@ -59,8 +59,15 @@ public class Ator {
         return ano;
     }
     
+    void atribuirOscar (Boolean valor)
+    {
+        oscar = valor;
+    }
+    Boolean retornarOscar()
+    {
+        return oscar;
     
     
     
-    
+}
 }
