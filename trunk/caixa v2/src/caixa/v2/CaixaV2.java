@@ -6,13 +6,15 @@ public class CaixaV2 {
     public static void main(String[] args) {
        Conta c = new Conta();
        Cliente cl = new Cliente();
+       Banco b = new Banco();
+               
         int op = 0, x = 0, num, agencia, n;
-        String nome, end, nasc = "", cpf;
+        String nome, emprestimo, emprestimo1, banco, numero, end, nasc = "", cpf;
         double valor = 0, saldo = 0;
-        Boolean saque, deposito, ativa = true, pend;
+        Boolean saque, carro, imovel,deposito, ativa = true, pend;
         
         do{
-        op = Integer.parseInt(JOptionPane.showInputDialog(" Menu:\n(1) Abrir conta\n(2) Sacar\n(3) Depositar\n(4) Saldo\n(5) Fechar conta\n(0) Sair"));
+        op = Integer.parseInt(JOptionPane.showInputDialog(" Menu:\n(1) Abrir conta\n(2) Sacar\n(3) Depositar\n(4) Saldo\n(5) Fechar conta\n(6) Banco\n(0) Sair"));
         switch (op){
             case 1:{
               nome = JOptionPane.showInputDialog(" Informe seu nome:");
@@ -67,14 +69,56 @@ public class CaixaV2 {
                 JOptionPane.showMessageDialog(null, " Sua conta foi desativada com sucesso!!!");
                 break;
             }
+            case 6:{
+                banco = JOptionPane.showInputDialog(" Informe o nome do banco:");
+                b.setNome(banco);
+                numero = JOptionPane.showInputDialog(" Informe o número do banco:");
+                b.setNum(numero);
+                emprestimo = JOptionPane.showInputDialog(" O Banco oferece empréstimo - Carro (s/n):"); 
+                
+                if (emprestimo.equals("s")){
+                    carro = true;
+                }
+                else{
+                    carro = false;
+                }
+                
+                b.setCarro(carro);
+                emprestimo1 = (JOptionPane.showInputDialog(" O Banco oferece empréstimo - Imovél (s/n):"));
+                
+                if (emprestimo1.equals("s")){
+                    imovel = true;
+                }
+                else{
+                    imovel = false;
+                }
+                
+                b.setImovel(imovel);
+                b.isCarro();
+                b.isImovel();
+                
+                if (carro == true){
+                    emprestimo = " oferece empréstimos - Carro e ";
+                }
+                else{
+                    emprestimo = " não oferece empréstimos - Carro e ";
+                }
+                
+                if (imovel == true){
+                    emprestimo1 = "oferece empréstimos - Imóvel.";
+                }
+                else{
+                    emprestimo1 = "não oferece empréstimos - Imóvel.";
+                }
+                
+                JOptionPane.showMessageDialog(null, " O banco " + b.getNome() + " , nº " + b.getNum() + emprestimo + emprestimo1);
+                break;
+            }
             default:{
                 x = 13;
                 break;
             }
         }
         }while (x == 0);
-        
-    
-    }
-    
+    }  
 }
