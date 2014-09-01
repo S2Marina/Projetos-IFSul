@@ -74,7 +74,10 @@ public class CaixaV2 {
                 b.setNome(banco);
                 numero = JOptionPane.showInputDialog(" Informe o número do banco:");
                 b.setNum(numero);
-                emprestimo = JOptionPane.showInputDialog(" O Banco oferece empréstimo - Carro (s/n):"); 
+               
+                do{
+                  emprestimo = JOptionPane.showInputDialog(" O Banco oferece empréstimo - Carro (s/n):"); 
+                }while(!emprestimo.equals("s") && !emprestimo.equals("n"));
                 
                 if (emprestimo.equals("s")){
                     carro = true;
@@ -82,16 +85,21 @@ public class CaixaV2 {
                 else{
                     carro = false;
                 }
-                
                 b.setCarro(carro);
-                emprestimo1 = (JOptionPane.showInputDialog(" O Banco oferece empréstimo - Imovél (s/n):"));
                 
+                do{
+                emprestimo1 = (JOptionPane.showInputDialog(" O Banco oferece empréstimo - Imovél (s/n):"));
+                }while(!emprestimo1.equals("s") && !emprestimo1.equals("n"));
+                
+                do{
                 if (emprestimo1.equals("s")){
                     imovel = true;
+                    
                 }
                 else{
                     imovel = false;
                 }
+                }while (!emprestimo1.equals("s") && !emprestimo1.equals("n"));
                 
                 b.setImovel(imovel);
                 b.isCarro();
