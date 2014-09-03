@@ -1,8 +1,6 @@
-package caixa.v2;
-
+package caixa.v3;
 import javax.swing.JOptionPane;
-
-public class CaixaV2 {
+public class CaixaV3 {
     public static void main(String[] args) {
        Conta c = new Conta();
        Cliente cl = new Cliente();
@@ -11,7 +9,7 @@ public class CaixaV2 {
         int op = 0, x = 0, n;
         String nome, num, agencia, emprestimo, emprestimo1, banco, numero, end, nasc = "", cpf;
         double valor = 0, saldo = 0;
-        Boolean saque, carro, imovel,deposito, ativa = true, pend;
+        Boolean saque, carro, imovel,deposito, ativa = true, pend = false;
         
         do{
         op = Integer.parseInt(JOptionPane.showInputDialog(" Menu:\n(1) Abrir conta\n(2) Sacar\n(3) Depositar\n(4) Saldo\n(5) Fechar conta\n(6) Banco\n(0) Sair"));
@@ -59,10 +57,12 @@ public class CaixaV2 {
             case 4:{
                 saldo = c.retornarSaldo();
                 pend = cl.verificaPendencias();
-                if (pend = true){
-                    JOptionPane.showMessageDialog(null, " Você está negativado!!! ");
+                if (pend == true){
+                    JOptionPane.showMessageDialog(null, " Seu saldo é de R$ " + saldo);   
                 }
-                JOptionPane.showMessageDialog(null, " Seu saldo é de R$ " + saldo);   
+                else{
+                    JOptionPane.showMessageDialog(null, " Você está negativado!!!\n Seu saldo é de R$ " + saldo);
+                }
                 break;
             }
             case 5:{
@@ -129,4 +129,5 @@ public class CaixaV2 {
         }
         }while (x == 0);
     }  
-}
+    }
+    
