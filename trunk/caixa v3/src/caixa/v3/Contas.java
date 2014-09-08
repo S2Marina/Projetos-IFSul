@@ -20,7 +20,7 @@ public class Contas {
         contas.add(c);
         
         for (Conta conta : contas) {
-            System.out.println(c.getNome());
+            System.out.println(conta.getNome());
         }
     
     }
