@@ -56,9 +56,12 @@ public class Conta {
     
     // meus métodos:
     
-    public void abrirConta (String nome, String num, String agencia){
+    public void abrirConta (String vnome, String vnum, String vagencia){
         ativa = true;
         saldo = 0.0 ;
+        nome = vnome;
+        num = vnum;
+        agencia = vagencia;        
     }
     
     public Boolean Sacar (Double saque){
