@@ -4,6 +4,12 @@ public class Conta {
     private Double saldo, saque, deposito;
     private Boolean ativa = true;
 
+    //método construtor
+    public Conta(){
+        agencia = "0001";
+        saldo = 0.0;
+    }
+    
     //gets e sets:
     
     public String getAgencia() {
