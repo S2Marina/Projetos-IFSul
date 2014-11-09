@@ -52,7 +52,7 @@ public class Televisao {
                  }
 
                  case 2:{
-                     JOptionPane.showMessageDialog(null, " Nome artístico: "+ a.getNome_art() + "\n Data de nascimento: " + a.getNasc() + "\n Email:" + a.getEmail() + "\n Quantidade de novelas:" + a.getNovelas() + "\n Status: " + a.returnStatus() + "\n Ganhos Mensais: "+ a.calcularGanhos(a.getEventos()));
+                     JOptionPane.showMessageDialog(null, " Nome artístico: "+ a.getNome_art() + "\n Data de nascimento: " + a.getNasc() + "\n Email:" + a.getEmail() + "\n Quantidade de novelas:" + a.getNovelas() + "\n Status: " + a.returnStatus() + "\n Ganhos Mensais: "+ a.calcularGanhos());
                      break;
                  }
                  
@@ -68,7 +68,7 @@ public class Televisao {
                       n.setDuracao(duracao);
                       n.setHora(hora);
                       n.setAutor(autor);
-                      n.setEmissora(emissora);
+                      n.setEmissora(n.getEmissora());
                       n.setAudiencia(audiencia);
                       
                       do{
@@ -109,7 +109,7 @@ public class Televisao {
                       }
                       n.setDuracao(duracao);
                       
-                      clas = n.obterClassificacao(v, s, d);
+                      clas = n.obterClassificacao();
                       
                       x = 0;
                      break;

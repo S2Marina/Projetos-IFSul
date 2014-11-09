@@ -35,7 +35,7 @@ public class TesteAtor {
       a.setCache(cache);
       a.setEventos(eventos);
       
-      JOptionPane.showMessageDialog(null, " Nome artístico: "+ nome_art + "\n Data de nascimento: " + nasc + "\n Email:" + email + "\n Quantidade de novelas:" + novelas + "\n Status: " + a.returnStatus() + "\n Ganhos Mensais: "+ a.calcularGanhos(eventos));
+      JOptionPane.showMessageDialog(null, " Nome artístico: "+ nome_art + "\n Data de nascimento: " + nasc + "\n Email:" + email + "\n Quantidade de novelas:" + novelas + "\n Status: " + a.returnStatus() + "\n Ganhos Mensais: "+ a.calcularGanhos());
     }
     
 }

@@ -4,13 +4,17 @@ public class Novela {
     private String duracao;
     private String hora;
     private String autor;
-    private String emissora;
+    private Emissora emissora;
     private Double ibope;
     private boolean violencia;
     private boolean sexo;
     private boolean drogas;
     private int clas;
     private Double audiencia;
+    
+    public Novela(){
+        this.emissora = new Emissora();
+    }
 
     public String getTitulo() {
         return titulo;
@@ -44,11 +48,11 @@ public class Novela {
         this.autor = autor;
     }
 
-    public String getEmissora() {
+    public Emissora getEmissora() {
         return emissora;
     }
 
-    public void setEmissora(String emissora) {
+    public void setEmissora(Emissora emissora) {
         this.emissora = emissora;
     }
 
@@ -92,7 +96,7 @@ public class Novela {
         this.audiencia = audiencia;
     }
     
-    public Integer obterClassificacao(boolean violencia, boolean sexo, boolean drogas){
+    public Integer obterClassificacao(){
         if (violencia == false && sexo == false && drogas == false){
             clas = 0;
         }
