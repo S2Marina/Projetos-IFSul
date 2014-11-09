@@ -108,7 +108,7 @@ public class Ator {
     }
 
     public void setEventos(Double eventos) {
-        this.eventos = eventos;
+        this.eventos = 1.0;
     }
             
     public String returnStatus(){
@@ -135,7 +135,7 @@ public class Ator {
         }
         return status;
 }
-    public Double calcularGanhos(Double eventos){
+    public Double calcularGanhos(){
         ganhos = (eventos * cache) + salario;
         return ganhos;
     }
