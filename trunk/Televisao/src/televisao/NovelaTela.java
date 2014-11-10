@@ -361,7 +361,7 @@ public class NovelaTela extends javax.swing.JFrame {
         n.setHora(txtHorario.getText());
         n.setAutor(txtAutor.getText());
        
-        e.setNome("Globo");
+        e.setNome(txtEmissora.getText());
         e.setEndereco("Rua Jd. Botanico...");
         e.setAberta(true);
         n.setEmissora(e);
@@ -404,7 +404,7 @@ public class NovelaTela extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAudienciaActionPerformed
 
     private void btProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProximoActionPerformed
-         btPrimeiro.setEnabled(true);
+        btPrimeiro.setEnabled(true);
         btAnterior.setEnabled(false);
         btProximo.setEnabled(true);
         btUltimo.setEnabled(true);
@@ -635,13 +635,13 @@ public class NovelaTela extends javax.swing.JFrame {
                 break;
                 
                }
-            posicao_consulta ++;
+            
             
             if (enc == false)
         {
             JOptionPane.showMessageDialog(null, "Novela ainda não cadastrada!");
         }
-       
+       posicao_consulta ++;
     }//GEN-LAST:event_btConsultarActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

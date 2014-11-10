@@ -395,23 +395,29 @@ public class EmissoraTela extends javax.swing.JFrame {
     }//GEN-LAST:event_botExcActionPerformed
 
     private void botConsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botConsActionPerformed
+        Emissora elemento = new Emissora();
         String nome = JOptionPane.showInputDialog("Digite o nome a ser pesquisado:");
         int posicaoachou = 0;
         boolean enc = false;
         for (Emissora emissora : lista) {
             //perguntar se o nome informado é igual a algum nome da lista
             if(nome.equals(emissora.getNome())){
-                enc = true;
-                //atualizo a posição:
                 posicao = posicaoachou;
+                enc = true;
+                txtNome.setText(elemento.getNome());
+                txtEndereco.setText(elemento.getEndereco());
+                if(elemento.isAberta() == true){
+                    selecExibicao.setSelectedIndex(2);
+                }
+                else{
+                    selecExibicao.setSelectedIndex(1);
+                }
+                //atualizo a posição:
                 break;
             }
-        }
-        if (enc == true){
-             JOptionPane.showMessageDialog(null, "Achou!!!");
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Não achou!!!");
+         }
+        if (enc == false){
+             JOptionPane.showMessageDialog(null, "Essa emissora não está cadastrada!!!");
         }
         posicaoachou++;
     }//GEN-LAST:event_botConsActionPerformed
