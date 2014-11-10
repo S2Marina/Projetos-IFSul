@@ -602,12 +602,13 @@ public class AtorTela extends javax.swing.JFrame {
                 break;
                 
                }
-            posicao_consulta ++;
+            
             
             if (enc == false)
         {
             JOptionPane.showMessageDialog(null, "Ator ainda não cadastrado!");
         }
+            posicao_consulta ++;
         }
     }//GEN-LAST:event_btConsultarActionPerformed
 
