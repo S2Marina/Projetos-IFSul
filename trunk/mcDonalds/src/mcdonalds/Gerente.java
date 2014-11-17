@@ -1,30 +1,30 @@
 package mcdonalds;
 
 public class Gerente {
-    private String nome_g, nasc_g, cpf_g;
+    private String nome, nasc, cpf;
 
-    public String getNome_g() {
-        return nome_g;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_g(String nome_g) {
-        this.nome_g = nome_g;
+    public void setNome(String nome) {
+        this.nome  = nome ;
     }
 
-    public String getNasc_g() {
-        return nasc_g;
+    public String getNasc () {
+        return nasc ;
     }
 
-    public void setNasc_g(String nasc_g) {
-        this.nasc_g = nasc_g;
+    public void setNasc (String nasc ) {
+        this.nasc  = nasc ;
     }
 
-    public String getCpf_g() {
-        return cpf_g;
+    public String getCpf () {
+        return cpf ;
     }
 
-    public void setCpf_g(String cpf_g) {
-        this.cpf_g = cpf_g;
+    public void setCpf (String cpf ) {
+        this.cpf  = cpf ;
     }
     
     public Double retSalario(){
