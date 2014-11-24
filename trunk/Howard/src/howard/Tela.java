@@ -5,86 +5,45 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Tela extends javax.swing.JFrame {
-
-    List<Roupas> listaA;
-    List<Roupas> listaB;
-    List<Roupas> listaC;
-    List<Roupas> listaD;
-    List<Roupas> listaE;
+    int posicao = 0;
+    List<Roupas> lista; 
+    
     public Tela() {
         initComponents();
-        listaA = new ArrayList<Roupas> ();
-        listaB = new ArrayList<Roupas> ();
-        listaC = new ArrayList<Roupas> ();
-        listaD = new ArrayList<Roupas> ();
-        listaE = new ArrayList<Roupas> ();
+        lista = new ArrayList();
     }
-    
+
     private void Limpar(){
         txtDescricao.setText(" ");
         txtTipo.setText(" ");
         txtCor.setText(" ");
         cxPreferida.setSelectedIndex(0);
-        cxFantasia.setSelectedIndex(0);
-    }  
-   
+      }  
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtDescricao = new javax.swing.JTextField();
+        btLimpar = new javax.swing.JButton();
+        btCadastrar = new javax.swing.JButton();
+        cxPreferida = new javax.swing.JComboBox();
         txtTipo = new javax.swing.JTextField();
         txtCor = new javax.swing.JTextField();
-        cxPreferida = new javax.swing.JComboBox();
-        cxFantasia = new javax.swing.JComboBox();
-        btCadastrar = new javax.swing.JButton();
-        btLimpar = new javax.swing.JButton();
-        btExibir = new javax.swing.JButton();
-
-        jLabel1.setText("jLabel1");
-
-        jTextField5.setText("jTextField5");
+        jLabel2 = new javax.swing.JLabel();
+        txtDescricao = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btPrimeiro = new javax.swing.JButton();
+        btAnterior = new javax.swing.JButton();
+        btProximo = new javax.swing.JButton();
+        btUltimo = new javax.swing.JButton();
+        btConsultar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel2.setForeground(java.awt.Color.blue);
-        jLabel2.setText("Roupas do Howard");
-
-        jLabel3.setText("Tipo:");
-
-        jLabel4.setText("Descrição:");
-
-        jLabel5.setText("Cor:");
-
-        jLabel6.setText("Essa roupa é uma das preferidas?");
-
-        jLabel7.setText("Essa roupa é uma fantasia?");
-
-        txtDescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescricaoActionPerformed(evt);
-            }
-        });
-
-        cxPreferida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Sim", "Não" }));
-
-        cxFantasia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Sim", "Não" }));
-
-        btCadastrar.setText("Cadastrar");
-        btCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCadastrarActionPerformed(evt);
-            }
-        });
 
         btLimpar.setText("Limpar");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,10 +52,101 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
-        btExibir.setText("Exibir Roupas por Prateleira");
-        btExibir.addActionListener(new java.awt.event.ActionListener() {
+        btCadastrar.setText("Cadastrar");
+        btCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExibirActionPerformed(evt);
+                btCadastrarActionPerformed(evt);
+            }
+        });
+
+        cxPreferida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Sim", "Não" }));
+
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel2.setForeground(java.awt.Color.blue);
+        jLabel2.setText("Roupas do Howard");
+
+        txtDescricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescricaoActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Essa roupa é uma das preferidas?");
+
+        jLabel5.setText("Cor:");
+
+        jLabel4.setText("Descrição:");
+
+        jLabel3.setText("Tipo:");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegação"));
+
+        btPrimeiro.setText("Primeiro");
+        btPrimeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPrimeiroActionPerformed(evt);
+            }
+        });
+
+        btAnterior.setText("Anterior");
+        btAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAnteriorActionPerformed(evt);
+            }
+        });
+
+        btProximo.setText("Próximo");
+        btProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btProximoActionPerformed(evt);
+            }
+        });
+
+        btUltimo.setText("Último");
+        btUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUltimoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(btPrimeiro)
+                .addGap(32, 32, 32)
+                .addComponent(btAnterior)
+                .addGap(34, 34, 34)
+                .addComponent(btProximo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(btUltimo)
+                .addGap(18, 18, 18))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btPrimeiro)
+                    .addComponent(btAnterior)
+                    .addComponent(btUltimo)
+                    .addComponent(btProximo))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        btConsultar.setText("Consultar");
+        btConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConsultarActionPerformed(evt);
+            }
+        });
+
+        btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
             }
         });
 
@@ -105,40 +155,45 @@ public class Tela extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(111, 111, 111)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(btCadastrar)
-                        .addGap(42, 42, 42)
-                        .addComponent(btLimpar)
-                        .addGap(37, 37, 37)
-                        .addComponent(btExibir))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtDescricao)
+                                    .addGap(58, 58, 58)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cxPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cxFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(88, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(39, 39, 39)
+                                .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addComponent(cxPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btExcluir)
+                        .addGap(35, 35, 35)
+                        .addComponent(btLimpar)
+                        .addGap(41, 41, 41)
+                        .addComponent(btConsultar)
+                        .addGap(27, 27, 27)
+                        .addComponent(btCadastrar)
+                        .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,31 +215,26 @@ public class Tela extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(cxPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(cxFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cxPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar)
                     .addComponent(btLimpar)
-                    .addComponent(btExibir))
-                .addGap(49, 49, 49))
+                    .addComponent(btConsultar)
+                    .addComponent(btExcluir))
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescricaoActionPerformed
-
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         Roupas r = new Roupas();
         Prateleiras p = new Prateleiras();
-        
+
         r.setDescricao(txtDescricao.getText());
         r.setTipo(txtTipo.getText());
         r.setCor(txtCor.getText());
@@ -194,79 +244,153 @@ public class Tela extends javax.swing.JFrame {
         else{
             r.setPreferida(false);
         }
-        
-        if(cxFantasia.getSelectedItem().equals("Sim")){
-            r.setFantasia(true);
-        }
-        else{
-            r.setFantasia(false);
-        }
-              
-        if(p.qualPrateleira(r).equals("A")){
-            listaA.add(r);
-        }
-        else if(p.qualPrateleira(r).equals("B")){
-            listaB.add(r);
-        }     
-        else if(p.qualPrateleira(r).equals("C")){
-            listaC.add(r);
-        }
-        else if(p.qualPrateleira(r).equals("D")){
-            listaD.add(r);
-        }
-        else if(p.qualPrateleira(r).equals("E")){
-            listaE.add(r);
-        }
-        
+
         Limpar();
         JOptionPane.showMessageDialog(null, " Roupa cadastrada com sucesso!!!");
     }//GEN-LAST:event_btCadastrarActionPerformed
 
-    private void btExibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExibirActionPerformed
-        int posicao = 0;
-        
-        
-        JOptionPane.showMessageDialog(null,"Prateleira A:");   
-        do{
-            Roupas a = listaA.get(posicao);
-           JOptionPane.showMessageDialog(null, a.retornoRoupa());            
-        }while (posicao <= listaA.size());
-        
-        
-        JOptionPane.showMessageDialog(null,"Prateleira B:");   
-        do{
-            Roupas b = listaB.get(posicao);
-           JOptionPane.showMessageDialog(null, b.retornoRoupa());            
-        }while (posicao <= listaB.size());
-        
-        
-        JOptionPane.showMessageDialog(null,"Prateleira C:");   
-        do{
-            Roupas c = listaC.get(posicao);
-           JOptionPane.showMessageDialog(null, c.retornoRoupa());            
-        }while (posicao <= listaC.size());
-        
-       
-        JOptionPane.showMessageDialog(null,"Prateleira D:");   
-        do{
-             Roupas d = listaD.get(posicao);
-           JOptionPane.showMessageDialog(null, d.retornoRoupa());            
-        }while (posicao <= listaD.size());
-        
-        
-        JOptionPane.showMessageDialog(null,"Prateleira E:");   
-        do{
-            Roupas e = listaE.get(posicao);
-           JOptionPane.showMessageDialog(null, e.retornoRoupa());            
-        }while (posicao <= listaE.size());
-    }//GEN-LAST:event_btExibirActionPerformed
+    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescricaoActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        lista.remove(lista.get(posicao));
+        Limpar();
+    }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         Limpar();
     }//GEN-LAST:event_btLimparActionPerformed
 
-    public static void main(String args[]) {
+    private void btPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrimeiroActionPerformed
+        btPrimeiro.setEnabled(true);
+        btAnterior.setEnabled(false);
+        btProximo.setEnabled(true);
+        btUltimo.setEnabled(true);
         
+        posicao = 0;
+        Roupas r = lista.get(0);
+        if (lista.size()>0){ 
+           txtDescricao.setText(r.getDescricao());
+           txtTipo.setText(r.getTipo());
+           txtCor.setText(r.getCor());
+           if(r.isPreferida() == true){
+                cxPreferida.setSelectedIndex(1);
+           }
+           else{
+                cxPreferida.setSelectedIndex(2);
+           }
+           
+           if (lista.size() == 1)
+            {
+                btProximo.setEnabled(false);
+                btAnterior.setEnabled(false);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, " Não há nenhuma roupa cadastrada!!!");
+        }
+        
+        
+    }//GEN-LAST:event_btPrimeiroActionPerformed
+
+    private void btAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnteriorActionPerformed
+        btPrimeiro.setEnabled(true);
+        btAnterior.setEnabled(true);
+        btProximo.setEnabled(true);
+        btUltimo.setEnabled(true);
+        
+        if(posicao > 0){
+            Roupas r = lista.get(posicao - 1);
+           txtDescricao.setText(r.getDescricao());
+           txtTipo.setText(r.getTipo());
+           txtCor.setText(r.getCor());
+           if(r.isPreferida() == true){
+                cxPreferida.setSelectedIndex(1);
+           }
+           else{
+                cxPreferida.setSelectedIndex(2);
+           }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, " Não há nenhuma roupa cadastrada!!!");
+        }
+    }//GEN-LAST:event_btAnteriorActionPerformed
+
+    private void btProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProximoActionPerformed
+        btPrimeiro.setEnabled(true);
+        btAnterior.setEnabled(true);
+        btProximo.setEnabled(true);
+        btUltimo.setEnabled(true);     
+        
+        Roupas r = lista.get(posicao + 1);
+           txtDescricao.setText(r.getDescricao());
+           txtTipo.setText(r.getTipo());
+           txtCor.setText(r.getCor());
+           if(r.isPreferida() == true){
+                cxPreferida.setSelectedIndex(1);
+           }
+           else{
+                cxPreferida.setSelectedIndex(2);
+           }
+          if (lista.size() - 1 == posicao)
+            {
+                btProximo.setEnabled(false);
+                btUltimo.setEnabled(false);
+            }
+    }//GEN-LAST:event_btProximoActionPerformed
+
+    private void btUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUltimoActionPerformed
+        btPrimeiro.setEnabled(true);
+        btAnterior.setEnabled(true);
+        btProximo.setEnabled(false);
+        btUltimo.setEnabled(false);  
+        
+        
+         Roupas r = lista.get(lista.size() - 1);
+            if (lista.size()>0){
+                txtDescricao.setText(r.getDescricao());
+                txtTipo.setText(r.getTipo());
+                txtCor.setText(r.getCor());
+                if(r.isPreferida() == true){
+                     cxPreferida.setSelectedIndex(1);
+                }
+                else{
+                     cxPreferida.setSelectedIndex(2);
+                }
+            }
+    }//GEN-LAST:event_btUltimoActionPerformed
+
+    private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
+        Roupas r = new Roupas();
+        String descricao = JOptionPane.showInputDialog("Digite a roupa a ser pesquisada:");
+        int posicaoachou = 0;
+        boolean enc = false;
+        for (Roupas roupa  : lista) {
+            //perguntar se o nome informado é igual a algum nome da lista
+            if(descricao.equals(roupa.getDescricao())){
+                posicao = posicaoachou;
+                enc = true;
+                 txtDescricao.setText(r.getDescricao());
+                txtTipo.setText(r.getTipo());
+                txtCor.setText(r.getCor());
+                if(r.isPreferida() == true){
+                     cxPreferida.setSelectedIndex(1);
+                }
+                else{
+                     cxPreferida.setSelectedIndex(2);
+                }
+                
+                break;
+            }
+         }
+        if (enc == false){
+             JOptionPane.showMessageDialog(null, "Essa roupa não está cadastrada!!!");
+        }
+        posicaoachou++;
+    }//GEN-LAST:event_btConsultarActionPerformed
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -289,30 +413,32 @@ public class Tela extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-     
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Tela().setVisible(true);
             }
         });
-    }
-
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAnterior;
     private javax.swing.JButton btCadastrar;
-    private javax.swing.JButton btExibir;
+    private javax.swing.JButton btConsultar;
+    private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLimpar;
-    private javax.swing.JComboBox cxFantasia;
+    private javax.swing.JButton btPrimeiro;
+    private javax.swing.JButton btProximo;
+    private javax.swing.JButton btUltimo;
     private javax.swing.JComboBox cxPreferida;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtCor;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }
+
