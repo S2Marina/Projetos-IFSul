@@ -6,17 +6,15 @@ import javax.swing.JOptionPane;
 
 public class Howard {
     public static void main(String[] args) {
-        List<Roupas> listaA = new ArrayList<Roupas> ();
-        List<Roupas> listaB = new ArrayList<Roupas> ();
-        List<Roupas> listaC = new ArrayList<Roupas> ();
-        List<Roupas> listaD = new ArrayList<Roupas> ();
-        List<Roupas> listaE = new ArrayList<Roupas> ();
+        List<Roupas> lista = new ArrayList<Roupas> ();
         
-        String retorno = " ", tipo, descricao, cor, personagem, codNasa, dia, preferida, fantasia;
+        String tipo, descricao, cor, personagem, codNasa, dia, preferida;
         int posicao = 0, x = 1,menu = 1;
         
         Roupas r = new Roupas();
         Prateleiras p = new Prateleiras();
+        Fantasias f = new Fantasias();
+        Astronauta a = new Astronauta();
         
          do{        
          menu = Integer.parseInt(JOptionPane.showInputDialog(" (1) Cadastrar uma roupa\n (2) Exibir roupas cadastradas\n (0)  Sair"));
@@ -50,58 +48,25 @@ public class Howard {
                     }
 
                     if(p.qualPrateleira(r).equals("A")){
-                        listaA.add(r);
+                        
                     }
                     else if(p.qualPrateleira(r).equals("B")){
-                        listaB.add(r);
+                        
                     }     
                     else if(p.qualPrateleira(r).equals("C")){
-                        listaC.add(r);
+                      
                     }
                     else if(p.qualPrateleira(r).equals("D")){
-                        listaD.add(r);
+                     
                     }
                     else if(p.qualPrateleira(r).equals("E")){
-                        listaE.add(r);
+                       
                     }
                     break;
 
           }
              case 2:{
-                 JOptionPane.showMessageDialog(null, "Prateleira A:");
-                 do{
-                     Roupas a = listaA.get(posicao);
-                     retorno +=  a.retornoRoupa();
-                 }while(posicao <= listaA.size());
-                 JOptionPane.showMessageDialog(null, retorno);
-                 
-                 JOptionPane.showMessageDialog(null, "Prateleira B:");
-                 do{
-                     Roupas b = listaB.get(posicao);
-                     retorno +=  b.retornoRoupa();
-                 }while(posicao <= listaB.size());
-                 JOptionPane.showMessageDialog(null, retorno);
-                 
-                 JOptionPane.showMessageDialog(null, "Prateleira C:");
-                 do{
-                     Roupas c = listaC.get(posicao);
-                     retorno +=  c.retornoRoupa();
-                 }while(posicao <= listaC.size());
-                 JOptionPane.showMessageDialog(null, retorno);
-                 
-                 JOptionPane.showMessageDialog(null, "Prateleira D:");
-                 do{
-                     Roupas d = listaD.get(posicao);
-                     retorno +=  d.retornoRoupa();
-                 }while(posicao <= listaD.size());
-                 JOptionPane.showMessageDialog(null, retorno);
-                 
-                 JOptionPane.showMessageDialog(null, "Prateleira E:");
-                 do{
-                     Roupas e = listaE.get(posicao);
-                     retorno +=  e.retornoRoupa();
-                 }while(posicao <= listaE.size());
-                 JOptionPane.showMessageDialog(null, retorno);
+                                
                  break;
              }
              
