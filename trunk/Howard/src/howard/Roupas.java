@@ -1,31 +1,7 @@
 package howard;
 public class Roupas {
-    private String tipo, descricao, cor, personagem, codNasa, dia;
-    private boolean preferida, fantasia;
-
-    public String getCodNasa() {
-        return codNasa;
-    }
-
-    public void setCodNasa(String codNasa) {
-        this.codNasa = codNasa;
-    }
-
-    public String getDia() {
-        return dia;
-    }
-
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
-
-    public String getPersonagem() {
-        return personagem;
-    }
-
-    public void setPersonagem(String personagem) {
-        this.personagem = personagem;
-    }
+    private String tipo, descricao, cor;
+    private boolean preferida;
 
     public String getTipo() {
         return tipo;
@@ -58,15 +34,7 @@ public class Roupas {
     public void setPreferida(boolean preferida) {
         this.preferida = preferida;
     }
-
-    public boolean isFantasia() {
-        return fantasia;
-    }
-
-    public void setFantasia(boolean fantasia) {
-        this.fantasia = fantasia;
-    }
-    
+   
     public String roupaPreferida(){
         String retorno = " ";
         if (preferida == true){
@@ -77,29 +45,10 @@ public class Roupas {
         }
         return retorno;
       }
-    public String personagemFantasia(){
-        String retorno = " ";
-        if (fantasia ==  true){
-            retorno = " / " + this.personagem;
-        }
-        else{
-           retorno = " ";
-        }
-        
-        return retorno;
-   }
-   
-  public String roupaAstronauta(){
-        String retorno = " ";
-        if(descricao.equalsIgnoreCase("Roupa de Astronauta")){
-            retorno = " | " + this.codNasa + " / " + this.dia;
-        }
-        return retorno;
-  }
-  
+
   public String retornoRoupa(){
       String retorno = " ";
-      retorno = this.descricao + " - " + this.tipo + " - " + this.cor + " - " + roupaPreferida() + personagemFantasia() + roupaAstronauta();
+      retorno = this.descricao + " - " + this.tipo + " - " + this.cor + " - " + roupaPreferida();
       return retorno;
   }
 }
