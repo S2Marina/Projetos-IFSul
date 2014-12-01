@@ -1,7 +1,7 @@
 package howard;
-public class Fantasias extends Roupas{
+public class Fantasias extends Prateleiras{
         private String personagem;
-       
+
         public String getPersonagem() {
            return personagem;
         }
@@ -10,13 +10,10 @@ public class Fantasias extends Roupas{
             this.personagem = personagem;
         }
         
-        public String personagemFantasia(){
-            return  " / " + this.personagem;   
-        }
-        
+        @Override
         public String retornoRoupa(){
             String retorno = " ";
-            retorno = super.retornoRoupa() + personagemFantasia();
+            retorno = super.retornoRoupa() + " / " + this.personagem; 
             return retorno;
         }
 }

@@ -48,7 +48,7 @@ public class Roupas {
 
   public String retornoRoupa(){
       String retorno = " ";
-      retorno = this.descricao + " - " + this.tipo + " - " + this.cor + " - " + roupaPreferida();
+  retorno = this.descricao + " - " + this.tipo + " - " + this.cor + roupaPreferida();
       return retorno;
   }
 }

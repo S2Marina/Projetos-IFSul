@@ -1,21 +1,42 @@
 package howard;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Prateleiras extends Roupas{
      private String prateleira;
-     
-    public String getPrateleira() {
-        return prateleira;
+     List<Roupas> lista = new ArrayList<Roupas> ();
+
+    public List<Roupas> getLista() {
+        return lista;
     }
 
-    public void setPrateleira(String prateleira) {
+    public void setLista(List<Roupas> lista) {
+        this.lista = lista;
+    }
+
+    public String getPrateleira() {
+        return prateleira;
+    } 
+     public void setPrateleira(String prateleira) {
         this.prateleira = prateleira;
     }
+      
+     public String retornoPrateleira(){
+         String retorno = " ";
+         for (Roupas roupas : lista) {
+            retorno += "\n" + roupas.retornoRoupa();
+        }
+
+         return retorno;
+     }
      
-    public String qualPrateleira(Roupas roupa){
+      // essa clase só é utilizada pela Tela
+      public String qualPrateleira(Roupas roupa){
         if(roupa.getTipo().equalsIgnoreCase("Roupa de Astronauta")){
             this.prateleira = "A";
          }
-        else if(roupa.getTipo().equalsIgnoreCase("Camisa") || roupa.getTipo().equalsIgnoreCase("Camiseta")){
+        else if(roupa.getTipo().equalsIgnoreCase("Camisa") || roupa.getTipo().equalsIgnoreCase("Camiseta")|| roupa.getTipo().equalsIgnoreCase("Calça")){
             this.prateleira = "B";
         }
         else if(roupa.getTipo().equalsIgnoreCase("Fantasia")){
@@ -30,10 +51,4 @@ public class Prateleiras extends Roupas{
         return prateleira;
     }
     
-     @Override
-     public String retornoRoupa(){
-         String retorno = " ";
-         retorno = this.prateleira + "\n" + super.retornoRoupa();
-         return retorno;
-     }
 }

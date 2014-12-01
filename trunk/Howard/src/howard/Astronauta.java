@@ -1,5 +1,5 @@
 package howard;
-public class Astronauta extends Roupas{
+public class Astronauta extends Prateleiras{
     private String codNasa, dia;
     
     public String getCodNasa() {
@@ -17,18 +17,10 @@ public class Astronauta extends Roupas{
     public void setDia(String dia) {
         this.dia = dia;
     }
-
-    public String roupaAstronauta(){
-        String retorno = " ";
-        if(getDescricao().equalsIgnoreCase("Roupa de Astronauta")){
-            retorno = " | " + this.codNasa + " / " + this.dia;
-        }
-        return retorno;
-    }
-    
+   
     public String retornoRoupa(){
             String retorno = " ";
-            retorno = super.retornoRoupa() + roupaAstronauta();
+            retorno = super.retornoRoupa() + " | " + this.codNasa;
             return retorno;
         }
 }
