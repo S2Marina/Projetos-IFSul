@@ -6,80 +6,94 @@ import javax.swing.JOptionPane;
 
 public class Howard {
     public static void main(String[] args) {
-        List<Roupas> lista = new ArrayList<Roupas> ();
-        
-        String tipo, descricao, cor, personagem, codNasa, dia, preferida;
-        int posicao = 0, x = 1,menu = 1;
         
         Roupas r = new Roupas();
-        Prateleiras p = new Prateleiras();
         Fantasias f = new Fantasias();
         Astronauta a = new Astronauta();
+        Prateleiras p = new Prateleiras();
+            
+        a.setDescricao("Camisa Oficial da missão Marte Ataca");
+        a.setTipo("Camisa");
+        a.setCor("Branca");
+        a.setCodNasa("1AXBC5");
+        a.setPreferida(true);
+        p.getLista().add(a);
         
-         do{        
-         menu = Integer.parseInt(JOptionPane.showInputDialog(" (1) Cadastrar uma roupa\n (2) Exibir roupas cadastradas\n (0)  Sair"));
+        JOptionPane.showMessageDialog(null, "Prateleira A:"  + p.retornoPrateleira());
         
-         switch(menu){
-             case 1:{
-                    descricao = JOptionPane.showInputDialog(" Descrição da roupa:");
-                    if(descricao.equalsIgnoreCase("Roupa de Astronauta")){
-                       codNasa = JOptionPane.showInputDialog(" Informe o código da NASA:");
-                       r.setCodNasa(codNasa);
-                       dia = JOptionPane.showInputDialog(" Qual a data em que ganhou essa roupa?");
-                       r.setDia(dia);
-                    }
-
-                    tipo = JOptionPane.showInputDialog(" Tipo de roupa:");
-                    cor = JOptionPane.showInputDialog(" Cor da roupa:");
-                    preferida = JOptionPane.showInputDialog(" Essa roupa é uma das preferidas?");
-                    fantasia = JOptionPane.showInputDialog(" Essa roupa é uma fantasia?");
-
-                    r.setDescricao(descricao);
-                    r.setTipo(tipo);
-                    r.setCor(cor);
-
-                    if(fantasia.equalsIgnoreCase("Sim")){
-                        personagem = JOptionPane.showInputDialog(" Qual personagem ela representa?");
-                        r.setFantasia(true);
-                        r.setPersonagem(personagem);
-                     }
-                    else{
-                        r.setFantasia(false);
-                    }
-
-                    if(p.qualPrateleira(r).equals("A")){
-                        
-                    }
-                    else if(p.qualPrateleira(r).equals("B")){
-                        
-                    }     
-                    else if(p.qualPrateleira(r).equals("C")){
-                      
-                    }
-                    else if(p.qualPrateleira(r).equals("D")){
-                     
-                    }
-                    else if(p.qualPrateleira(r).equals("E")){
-                       
-                    }
-                    break;
-
-          }
-             case 2:{
-                                
-                 break;
-             }
-             
-             case 0:{
-                 x = 0;
-                 break;
-             }
-             default:{
-                 JOptionPane.showMessageDialog(null, " Opção inválida!!!");
-                 break;
-             }  
-    }
-
-}while(x != 0);
+        p = new Prateleiras();
+        
+        r.setDescricao("Camiseta Xadrez");
+        r.setCor("Azul");
+        r.setTipo("Camisa");
+        r.setPreferida(false);
+        p.getLista().add(r);
+        
+        r = new Roupas();
+        
+        r.setDescricao("Camiseta Xadrez");
+        r.setCor("Verde");
+        r.setTipo("Camisa");
+        r.setPreferida(false);
+        p.getLista().add(r);
+        
+        r = new Roupas();
+        
+        r.setDescricao("Camiseta Xadrez");
+        r.setCor("Rosa");
+        r.setTipo("Camisa");
+        r.setPreferida(false);
+        p.getLista().add(r);
+        
+        r = new Roupas();
+        
+        r.setDescricao("Camiseta Nova");
+        r.setCor("Azul");
+        r.setTipo("Camiseta");
+        r.setPreferida(false);
+        p.getLista().add(r);
+        
+        r = new Roupas();
+        
+        r.setDescricao("Camiseta Gola Polo");
+        r.setCor("Azul");
+        r.setTipo("Camiseta");
+        r.setPreferida(false);
+        p.getLista().add(r);
+        
+        r = new Roupas();
+                
+        r.setDescricao("Calça");
+        r.setCor("Roxa");
+        r.setTipo("Calça");
+        r.setPreferida(false);
+        p.getLista().add(r);
+        
+        r = new Roupas();
+        
+        JOptionPane.showMessageDialog(null, "Prateleira B:"  + p.retornoPrateleira());
+         
+        p = new Prateleiras();
+        
+        f.setDescricao("Camisa");
+        f.setTipo("Camisa");
+        f.setCor("Azul");
+        f.setPersonagem("Superman");
+        f.setPreferida(false);
+        p.getLista().add(f);
+        
+        f = new Fantasias();
+        
+        f.setDescricao("Bermuda");
+        f.setTipo("Bermuda");
+        f.setCor("Verde");
+        f.setPersonagem("Coringa");
+        f.setPreferida(false);
+        p.getLista().add(f);
+        
+        f = new Fantasias();
+        
+        JOptionPane.showMessageDialog(null, "Prateleira C:"  + p.retornoPrateleira());
+ 
 }
 }

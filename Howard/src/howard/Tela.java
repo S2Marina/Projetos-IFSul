@@ -234,6 +234,7 @@ public class Tela extends javax.swing.JFrame {
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         Roupas r = new Roupas();
         Prateleiras p = new Prateleiras();
+     
 
         r.setDescricao(txtDescricao.getText());
         r.setTipo(txtTipo.getText());
@@ -244,7 +245,8 @@ public class Tela extends javax.swing.JFrame {
         else{
             r.setPreferida(false);
         }
-
+        
+        lista.add(r);
         Limpar();
         JOptionPane.showMessageDialog(null, " Roupa cadastrada com sucesso!!!");
     }//GEN-LAST:event_btCadastrarActionPerformed
@@ -269,6 +271,8 @@ public class Tela extends javax.swing.JFrame {
         btUltimo.setEnabled(true);
         
         posicao = 0;
+        Prateleiras p = new Prateleiras();
+        String prateleira;
         Roupas r = lista.get(0);
         if (lista.size()>0){ 
            txtDescricao.setText(r.getDescricao());
@@ -280,6 +284,9 @@ public class Tela extends javax.swing.JFrame {
            else{
                 cxPreferida.setSelectedIndex(2);
            }
+           
+           prateleira = p.qualPrateleira(r);
+           JOptionPane.showMessageDialog(null, "Roupa localizada na prateleira: " + prateleira);
            
            if (lista.size() == 1)
             {
@@ -301,6 +308,8 @@ public class Tela extends javax.swing.JFrame {
         btUltimo.setEnabled(true);
         
         if(posicao > 0){
+            Prateleiras p = new Prateleiras();
+            String prateleira;
             Roupas r = lista.get(posicao - 1);
            txtDescricao.setText(r.getDescricao());
            txtTipo.setText(r.getTipo());
@@ -311,6 +320,8 @@ public class Tela extends javax.swing.JFrame {
            else{
                 cxPreferida.setSelectedIndex(2);
            }
+           prateleira = p.qualPrateleira(r);
+           JOptionPane.showMessageDialog(null, "Roupa localizada na prateleira: " + prateleira);
         }
         else{
             JOptionPane.showMessageDialog(null, " Não há nenhuma roupa cadastrada!!!");
@@ -324,6 +335,8 @@ public class Tela extends javax.swing.JFrame {
         btUltimo.setEnabled(true);     
         
         Roupas r = lista.get(posicao + 1);
+        Prateleiras p = new Prateleiras();
+        String prateleira;
            txtDescricao.setText(r.getDescricao());
            txtTipo.setText(r.getTipo());
            txtCor.setText(r.getCor());
@@ -333,7 +346,10 @@ public class Tela extends javax.swing.JFrame {
            else{
                 cxPreferida.setSelectedIndex(2);
            }
-          if (lista.size() - 1 == posicao)
+           prateleira = p.qualPrateleira(r);
+           JOptionPane.showMessageDialog(null, "Roupa localizada na prateleira: " + prateleira);
+          
+           if (lista.size() - 1 == posicao)
             {
                 btProximo.setEnabled(false);
                 btUltimo.setEnabled(false);
@@ -348,6 +364,8 @@ public class Tela extends javax.swing.JFrame {
         
         
          Roupas r = lista.get(lista.size() - 1);
+         Prateleiras p = new Prateleiras();
+         String prateleira;
             if (lista.size()>0){
                 txtDescricao.setText(r.getDescricao());
                 txtTipo.setText(r.getTipo());
@@ -358,6 +376,8 @@ public class Tela extends javax.swing.JFrame {
                 else{
                      cxPreferida.setSelectedIndex(2);
                 }
+                prateleira = p.qualPrateleira(r);
+               JOptionPane.showMessageDialog(null, "Roupa localizada na prateleira: " + prateleira);
             }
     }//GEN-LAST:event_btUltimoActionPerformed
 
@@ -380,13 +400,14 @@ public class Tela extends javax.swing.JFrame {
                      cxPreferida.setSelectedIndex(2);
                 }
                 JOptionPane.showMessageDialog(null, "Esta roupa está na prateleira:" + p.qualPrateleira(roupa)); 
+                posicaoachou++;
                 break;
             }
          }
         if (enc == false){
              JOptionPane.showMessageDialog(null, "Essa roupa não está cadastrada!!!");
         }
-        posicaoachou++;
+        
     }//GEN-LAST:event_btConsultarActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
