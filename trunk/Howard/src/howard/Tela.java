@@ -310,7 +310,9 @@ public class Tela extends javax.swing.JFrame {
         if(posicao > 0){
             Prateleiras p = new Prateleiras();
             String prateleira;
-            Roupas r = lista.get(posicao - 1);
+            
+            posicao = posicao - 1;
+            Roupas r = lista.get(posicao);
            txtDescricao.setText(r.getDescricao());
            txtTipo.setText(r.getTipo());
            txtCor.setText(r.getCor());
@@ -329,41 +331,44 @@ public class Tela extends javax.swing.JFrame {
     }//GEN-LAST:event_btAnteriorActionPerformed
 
     private void btProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProximoActionPerformed
-        btPrimeiro.setEnabled(true);
+       btPrimeiro.setEnabled(true);
         btAnterior.setEnabled(true);
         btProximo.setEnabled(true);
-        btUltimo.setEnabled(true);     
-        
-        Roupas r = lista.get(posicao + 1);
+        btUltimo.setEnabled(true);
+
+        posicao = posicao + 1;
+
+        Roupas r = lista.get(posicao);
         Prateleiras p = new Prateleiras();
         String prateleira;
-           txtDescricao.setText(r.getDescricao());
-           txtTipo.setText(r.getTipo());
-           txtCor.setText(r.getCor());
-           if(r.isPreferida() == true){
+        
+        txtDescricao.setText(r.getDescricao());
+        txtTipo.setText(r.getTipo());
+        txtCor.setText(r.getCor());
+        
+        if(r.isPreferida() == true){
                 cxPreferida.setSelectedIndex(1);
            }
            else{
                 cxPreferida.setSelectedIndex(2);
            }
-           prateleira = p.qualPrateleira(r);
-           JOptionPane.showMessageDialog(null, "Roupa localizada na prateleira: " + prateleira);
-          
-           if (lista.size() - 1 == posicao)
-            {
-                btProximo.setEnabled(false);
-                btUltimo.setEnabled(false);
-            }
+        prateleira = p.qualPrateleira(r);
+           
+        if (posicao == lista.size() - 1) {
+            btProximo.setEnabled(false);
+            btUltimo.setEnabled(true);
+        }
     }//GEN-LAST:event_btProximoActionPerformed
 
     private void btUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUltimoActionPerformed
         btPrimeiro.setEnabled(true);
         btAnterior.setEnabled(true);
         btProximo.setEnabled(false);
-        btUltimo.setEnabled(false);  
+        btUltimo.setEnabled(false); 
         
+        posicao = lista.size() - 1;
         
-         Roupas r = lista.get(lista.size() - 1);
+         Roupas r = lista.get(posicao);
          Prateleiras p = new Prateleiras();
          String prateleira;
             if (lista.size()>0){
@@ -385,7 +390,7 @@ public class Tela extends javax.swing.JFrame {
         Prateleiras p = new Prateleiras();
         String descricao = JOptionPane.showInputDialog("Digite a roupa a ser pesquisada:");
         int posicaoachou = 0;
-        boolean enc = true;
+        boolean enc = false;
         for (Roupas roupa  : lista) {
             if(descricao.equals(roupa.getDescricao())){
                 posicao = posicaoachou;
@@ -400,9 +405,9 @@ public class Tela extends javax.swing.JFrame {
                      cxPreferida.setSelectedIndex(2);
                 }
                 JOptionPane.showMessageDialog(null, "Esta roupa está na prateleira:" + p.qualPrateleira(roupa)); 
-                posicaoachou++;
                 break;
             }
+             posicaoachou++;
          }
         if (enc == false){
              JOptionPane.showMessageDialog(null, "Essa roupa não está cadastrada!!!");
