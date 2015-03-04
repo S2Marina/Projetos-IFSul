@@ -61,6 +61,7 @@ public class pessoaManter extends javax.swing.JFrame {
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         btPrimeiro.setText("Primeiro");
+        btPrimeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btPrimeiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPrimeiroActionPerformed(evt);
@@ -104,6 +105,7 @@ public class pessoaManter extends javax.swing.JFrame {
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         btCons.setText("Consultar");
+        btCons.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btCons.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btConsActionPerformed(evt);
@@ -112,6 +114,7 @@ public class pessoaManter extends javax.swing.JFrame {
         jPanel3.add(btCons);
 
         btExc.setText("Excluir");
+        btExc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btExc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcActionPerformed(evt);
@@ -120,6 +123,7 @@ public class pessoaManter extends javax.swing.JFrame {
         jPanel3.add(btExc);
 
         btLimp.setText("Limpar");
+        btLimp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btLimp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimpActionPerformed(evt);
@@ -128,6 +132,7 @@ public class pessoaManter extends javax.swing.JFrame {
         jPanel3.add(btLimp);
 
         btCad.setText("Cadastrar");
+        btCad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btCad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCadActionPerformed(evt);
@@ -202,12 +207,7 @@ public class pessoaManter extends javax.swing.JFrame {
         
         Boolean x = false;
         
-        p.setCod(Integer.parseInt(txtCod.getText()));
-        p.setNome(txtNome.getText());
-        p.setSexo(boxSexo.getSelectedItem().toString());
-        
-        
-         if(txtCod.getText().isEmpty() || txtNome.getText().isEmpty() || boxSexo.getSelectedIndex() == 0){
+         if(txtCod.getText().isEmpty() || txtNome.getText().isEmpty()|| boxSexo.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
         }
          else{
@@ -219,7 +219,12 @@ public class pessoaManter extends javax.swing.JFrame {
                    JOptionPane.showMessageDialog(rootPane, "O código deve ser numérico!!!");
                  }
          }
-
+        
+        p.setCod(Integer.parseInt(txtCod.getText()));
+        p.setNome(txtNome.getText());
+        p.setSexo(boxSexo.getSelectedItem().toString());
+        
+        
          if (x==true){
              lista.add(p);  
             JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
@@ -251,7 +256,6 @@ public class pessoaManter extends javax.swing.JFrame {
           if (enc == false){
               JOptionPane.showMessageDialog(null, "Essa pessoa não está cadastrada!!!");
           }
-          
     }//GEN-LAST:event_btConsActionPerformed
 
     private void btLimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpActionPerformed

@@ -54,6 +54,7 @@ public class cidadeManter extends javax.swing.JFrame {
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         btPrimeiro.setText("Primeiro");
+        btPrimeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btPrimeiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPrimeiroActionPerformed(evt);
@@ -62,6 +63,7 @@ public class cidadeManter extends javax.swing.JFrame {
         jPanel1.add(btPrimeiro);
 
         btAnterior.setText("Anterior");
+        btAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAnteriorActionPerformed(evt);
@@ -70,6 +72,7 @@ public class cidadeManter extends javax.swing.JFrame {
         jPanel1.add(btAnterior);
 
         btProximo.setText("Próximo");
+        btProximo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btProximoActionPerformed(evt);
@@ -78,6 +81,7 @@ public class cidadeManter extends javax.swing.JFrame {
         jPanel1.add(btProximo);
 
         btUltimo.setText("Último");
+        btUltimo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btUltimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btUltimoActionPerformed(evt);
@@ -86,9 +90,10 @@ public class cidadeManter extends javax.swing.JFrame {
         jPanel1.add(btUltimo);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
-        jPanel3.setLayout(new java.awt.GridLayout());
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         btCons.setText("Consultar");
+        btCons.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btCons.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btConsActionPerformed(evt);
@@ -97,6 +102,7 @@ public class cidadeManter extends javax.swing.JFrame {
         jPanel3.add(btCons);
 
         btExc.setText("Excluir");
+        btExc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btExc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcActionPerformed(evt);
@@ -105,6 +111,7 @@ public class cidadeManter extends javax.swing.JFrame {
         jPanel3.add(btExc);
 
         btLimp.setText("Limpar");
+        btLimp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btLimp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLimpActionPerformed(evt);
@@ -113,6 +120,7 @@ public class cidadeManter extends javax.swing.JFrame {
         jPanel3.add(btLimp);
 
         btCad.setText("Cadastrar");
+        btCad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btCad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCadActionPerformed(evt);
@@ -290,10 +298,7 @@ public class cidadeManter extends javax.swing.JFrame {
     private void btCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadActionPerformed
         Cidade c = new Cidade();
         Boolean x = false;
-
-        c.setCod(Integer.parseInt(txtC.getText()));
-        c.setNome(txtN.getText());
-        
+       
         if(txtC.getText().isEmpty() || txtN.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
         }
@@ -307,6 +312,9 @@ public class cidadeManter extends javax.swing.JFrame {
             }
         }
 
+        c.setCod(Integer.parseInt(txtC.getText()));
+        c.setNome(txtN.getText());
+        
         if (x==true){
             lista.add(c);
             JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
