@@ -43,6 +43,7 @@ public class pessoaManter extends javax.swing.JFrame {
         btLimp = new javax.swing.JButton();
         btCad = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        btListagem = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -143,6 +144,13 @@ public class pessoaManter extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Pessoa");
 
+        btListagem.setText("Listagem");
+        btListagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListagemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,6 +180,10 @@ public class pessoaManter extends javax.swing.JFrame {
                         .addGap(232, 232, 232)
                         .addComponent(jLabel4)))
                 .addContainerGap(101, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btListagem)
+                .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +208,9 @@ public class pessoaManter extends javax.swing.JFrame {
                     .addComponent(boxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(18, 18, 18)
+                .addComponent(btListagem)
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -367,6 +381,13 @@ public class pessoaManter extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btUltimoActionPerformed
 
+    private void btListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListagemActionPerformed
+        pessoaListar lista = new pessoaListar();
+        lista.setVisible(true);
+        
+        dispose();
+    }//GEN-LAST:event_btListagemActionPerformed
+
     public static void main(String args[]) {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -383,6 +404,7 @@ public class pessoaManter extends javax.swing.JFrame {
     private javax.swing.JButton btCons;
     private javax.swing.JButton btExc;
     private javax.swing.JButton btLimp;
+    private javax.swing.JButton btListagem;
     private javax.swing.JButton btPrimeiro;
     private javax.swing.JButton btProximo;
     private javax.swing.JButton btUltimo;
