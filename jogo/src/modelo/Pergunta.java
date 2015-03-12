@@ -1,11 +1,20 @@
 package modelo;
 public class Pergunta {
+    private String enunciado;
     private String a;
     private String b;
     private String c;
     private String d;
     private String certa;
     private Integer nivel;
+
+    public String getEnunciado() {
+        return enunciado;
+    }
+
+    public void setEnunciado(String enunciado) {
+        this.enunciado = enunciado;
+    }
 
     public String getA() {
         return a;
