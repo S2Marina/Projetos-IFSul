@@ -1,37 +1,52 @@
 package admin;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import modelo.Jogador;
 import modelo.Ranking;
 
 public class rankingListar extends javax.swing.JFrame {
      List<Ranking> lista;
   
-     public rankingListar() {
+     public rankingListar() throws ParseException {
         initComponents();
-        lista = new ArrayList<Ranking>();
-      
-        Ranking r = new Ranking();
         
-        r.setLogin("Marina");
+        String datahora = "12-09-2014 01:10 PM";
+        DateFormat formatado = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
+        Date data = formatado.parse(datahora);
+        
+        lista = new ArrayList<Ranking>();
+       
+        Ranking r = new Ranking();
+                
+        r.setId(01);
+        r.getJogador().setLogin("Marina");
         r.setPontos(10);
-        r.setData(null);
+        r.setData(data);
         lista.add(r);
         
         r = new Ranking();
         
-        r.setLogin("Hiasmin");
+        r.setId(02);
+        r.getJogador().setLogin("Hiasmin");
         r.setPontos(110);
-        r.setData(null);
+        r.setData(data);
         
         lista.add(r);
        
         r = new Ranking();
         
-        r.setLogin("Leka");
+        r.setId(03);
+        r.getJogador().setLogin("Leka");
         r.setPontos(1110);
-        r.setData(null);
+        r.setData(data);
         
         lista.add(r);
         
@@ -40,7 +55,7 @@ public class rankingListar extends javax.swing.JFrame {
         Object[] linha = new Object[(modelo.getColumnCount())]; 
         
         for (Ranking ran : lista){ 
-            linha[0] = ran.getLogin(); 
+            linha[0] = ran.getJogador().getLogin(); 
             linha[1] = ran.getPontos();
             linha[2] = ran.getData();
              
@@ -154,7 +169,11 @@ public class rankingListar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new rankingListar().setVisible(true);
+                try {
+                    new rankingListar().setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(rankingListar.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -1,5 +1,6 @@
 package modelo;
 public class Pergunta {
+    private Integer id;
     private String enunciado;
     private String a;
     private String b;
@@ -7,6 +8,14 @@ public class Pergunta {
     private String d;
     private String certa;
     private Integer nivel;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getEnunciado() {
         return enunciado;

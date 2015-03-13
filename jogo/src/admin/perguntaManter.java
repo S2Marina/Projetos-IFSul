@@ -21,7 +21,7 @@ public class perguntaManter extends javax.swing.JFrame {
         txtB.setText(null);
         txtC.setText(null);
         txtD.setText(null);
-        txtNivel.setText(null);
+        boxNivel.setSelectedIndex(0);
         boxCerta.setSelectedIndex(0);
     }
     
@@ -55,7 +55,9 @@ public class perguntaManter extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         boxCerta = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
-        txtNivel = new javax.swing.JTextField();
+        boxNivel = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,9 +181,18 @@ public class perguntaManter extends javax.swing.JFrame {
 
         jLabel10.setText("Nível:");
 
-        txtNivel.addActionListener(new java.awt.event.ActionListener() {
+        boxNivel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "1", "2", "3", "4", "5" }));
+        boxNivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNivelActionPerformed(evt);
+                boxNivelActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("ID:");
+
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
             }
         });
 
@@ -201,46 +212,52 @@ public class perguntaManter extends javax.swing.JFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(101, 101, 101)
-                                    .addComponent(jLabel4))
-                                .addComponent(jLabel6)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel5)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(36, 36, 36)
-                                    .addComponent(txtA, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel7)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(36, 36, 36)
-                                    .addComponent(txtC, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(boxCerta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel4)))
                             .addGap(76, 76, 76)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtEnunciado, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtB, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(64, 64, 64)
-                                        .addComponent(jLabel2))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(26, 26, 26)
-                                .addComponent(txtNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(58, 58, 58)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel8)
+                                            .addGap(26, 26, 26)
+                                            .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel5)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(36, 36, 36)
+                                            .addComponent(txtA, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel7)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(36, 36, 36)
+                                            .addComponent(txtC, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel9)
+                                                .addComponent(jLabel10))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(boxNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(boxCerta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtEnunciado, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(94, 94, 94)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtB, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(64, 64, 64)
+                                            .addComponent(jLabel2))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtId))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -250,7 +267,11 @@ public class perguntaManter extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(txtEnunciado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -276,11 +297,11 @@ public class perguntaManter extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(boxCerta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                    .addComponent(boxNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(btListagem)
@@ -299,11 +320,12 @@ public class perguntaManter extends javax.swing.JFrame {
             if(perg.equals(p.getEnunciado())){
                 posicao = posicaoachou;
                 enc = true;
+                txtId.setText(p.getId().toString());
                 txtA.setText(p.getA());
                 txtC.setText(p.getC());
                 txtB.setText(p.getB());
                 txtD.setText(p.getD());
-                txtNivel.setText(p.getNivel().toString());
+                boxNivel.setSelectedIndex(Integer.parseInt(p.getNivel().toString()));
                 boxCerta.setSelectedItem(p.getCerta());
                 break;
             }
@@ -325,31 +347,30 @@ public class perguntaManter extends javax.swing.JFrame {
 
     private void btCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadActionPerformed
         Pergunta p = new Pergunta();
-
         Boolean x = false;
 
-        if(txtEnunciado.getText().isEmpty() || txtA.getText().isEmpty()|| txtB.getText().isEmpty() || txtC.getText().isEmpty()|| txtD.getText().isEmpty()||txtNivel.getText().isEmpty()|| boxCerta.getSelectedIndex() == 0 ){
+        if(txtEnunciado.getText().isEmpty() || txtA.getText().isEmpty()|| txtB.getText().isEmpty() || txtC.getText().isEmpty()|| txtD.getText().isEmpty()||boxNivel.getSelectedIndex()==0| boxCerta.getSelectedIndex() == 0 ){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
-        } try {
-                  p.setNivel(Integer.parseInt(txtNivel.getText()));    
+        }else{
+            try {
+                  p.setId(Integer.parseInt(txtId.getText()));    
                   x = true;
                 } catch (Exception e) {
                     x = false;
-                   JOptionPane.showMessageDialog(rootPane, "O nível deve ser numérico!!!");
+                   JOptionPane.showMessageDialog(rootPane, "O código deve ser numérico!!!");
                  }
-
+         }
+       
         p.setEnunciado(txtEnunciado.getText());
         p.setA(txtA.getText());
         p.setB(txtB.getText());
         p.setC(txtC.getText());
         p.setD(txtD.getText());
         p.setCerta(boxCerta.getSelectedItem().toString());
-        
-
-        if (x==true){
-            lista.add(p);
-            JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
-        }
+        p.setNivel(Integer.parseInt(boxNivel.getSelectedItem().toString()));
+              
+        JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
+   
         Limpar();
     }//GEN-LAST:event_btCadActionPerformed
 
@@ -364,11 +385,12 @@ public class perguntaManter extends javax.swing.JFrame {
         Pergunta p = lista.get(0);
         if (lista.size()>0){
             txtEnunciado.setText(p.getEnunciado());
+            txtId.setText(p.getId().toString());
             txtA.setText(p.getA());
             txtB.setText(p.getB());
             txtC.setText(p.getC());
             txtD.setText(p.getD());
-            txtNivel.setText(p.getNivel().toString());
+            boxNivel.setSelectedItem(p.getNivel().toString());
             boxCerta.setSelectedItem(p.getCerta());
 
             if (lista.size() == 1)
@@ -393,11 +415,12 @@ public class perguntaManter extends javax.swing.JFrame {
             posicao = posicao - 1;
             Pergunta p = lista.get(posicao);
             txtEnunciado.setText(p.getEnunciado());
+            txtId.setText(p.getId().toString());
             txtA.setText(p.getA());
             txtB.setText(p.getB());
             txtC.setText(p.getC());
             txtD.setText(p.getD());
-            txtNivel.setText(p.getNivel().toString());
+            boxNivel.setSelectedItem(p.getNivel().toString());
             boxCerta.setSelectedItem(p.getCerta());
         }
         else{
@@ -415,12 +438,13 @@ public class perguntaManter extends javax.swing.JFrame {
 
         Pergunta p = lista.get(posicao);
         txtEnunciado.setText(p.getEnunciado());
-            txtA.setText(p.getA());
-            txtB.setText(p.getB());
-            txtC.setText(p.getC());
-            txtD.setText(p.getD());
-            txtNivel.setText(p.getNivel().toString());
-            boxCerta.setSelectedItem(p.getCerta());
+        txtId.setText(p.getId().toString());
+        txtA.setText(p.getA());
+        txtB.setText(p.getB());
+        txtC.setText(p.getC());
+        txtD.setText(p.getD());
+        boxNivel.setSelectedItem(p.getNivel().toString());
+        boxCerta.setSelectedItem(p.getCerta());
 
         if (posicao == lista.size() - 1) {
             btProximo.setEnabled(false);
@@ -438,11 +462,12 @@ public class perguntaManter extends javax.swing.JFrame {
 
         Pergunta p = lista.get(posicao);
         txtEnunciado.setText(p.getEnunciado());
+        txtId.setText(p.getId().toString());
         txtA.setText(p.getA());
         txtB.setText(p.getB());
         txtC.setText(p.getC());
         txtD.setText(p.getD());
-        txtNivel.setText(p.getNivel().toString());
+        boxNivel.setSelectedItem(p.getNivel().toString());
         boxCerta.setSelectedItem(p.getCerta());
     }//GEN-LAST:event_btUltimoActionPerformed
 
@@ -465,9 +490,13 @@ public class perguntaManter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDActionPerformed
 
-    private void txtNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNivelActionPerformed
+    private void boxNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxNivelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNivelActionPerformed
+    }//GEN-LAST:event_boxNivelActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
 
     public static void main(String args[]) {
         
@@ -503,6 +532,7 @@ public class perguntaManter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox boxCerta;
+    private javax.swing.JComboBox boxNivel;
     private javax.swing.JButton btAnterior;
     private javax.swing.JButton btCad;
     private javax.swing.JButton btCons;
@@ -515,6 +545,7 @@ public class perguntaManter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -528,6 +559,6 @@ public class perguntaManter extends javax.swing.JFrame {
     private javax.swing.JTextField txtC;
     private javax.swing.JTextField txtD;
     private javax.swing.JTextField txtEnunciado;
-    private javax.swing.JTextField txtNivel;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }
