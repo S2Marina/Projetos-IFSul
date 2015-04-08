@@ -24,7 +24,7 @@ public class PerguntaDAO {
             pst.setString(6, pergunta.getCerta());
             pst.setInt(7, pergunta.getNivel());
             
- .           pst.executeUpdate();//executa o sql no banco
+            pst.executeUpdate();//executa o sql no banco
             retorno = true;         
 
         } catch (SQLException ex) {
