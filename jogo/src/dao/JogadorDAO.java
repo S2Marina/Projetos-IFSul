@@ -49,4 +49,22 @@ public class JogadorDAO {
         }
        return lista;
     }
+    
+    public boolean excluir(Jogador jogador){
+        Boolean retorno;
+        String sql = "DELETE FROM jogador WHERE login = ?"; 
+        PreparedStatement pst = Conexao.getPreparedStatement(sql);
+        
+        try {
+            pst.setString(1,jogador.getLogin());           
+            pst.executeUpdate();
+            retorno = true;         
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        
+        return retorno;
+    }
 }

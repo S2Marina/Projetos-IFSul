@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/m/jogo/src/dao/JogadorDAO.java</file>
-            <file>file:/E:/m/jogo/src/admin/jogadorManter.java</file>
+            <file>file:/E:/m/meu-projetinho/jogo/src/admin/perguntaListar.java</file>
+            <file>file:/E:/m/meu-projetinho/jogo/src/admin/jogadorListar.java</file>
+            <file>file:/E:/m/meu-projetinho/jogo/src/admin/perguntaManter.java</file>
+            <file>file:/E:/m/meu-projetinho/jogo/src/dao/JogadorDAO.java</file>
+            <file>file:/E:/m/meu-projetinho/jogo/src/dao/PerguntaDAO.java</file>
+            <file>file:/E:/m/meu-projetinho/jogo/src/admin/jogadorManter.java</file>
         </group>
     </open-files>
 </project-private>

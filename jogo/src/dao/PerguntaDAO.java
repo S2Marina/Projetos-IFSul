@@ -37,7 +37,7 @@ public class PerguntaDAO {
     
     public List<Pergunta> listar(){
         List<Pergunta> lista = new ArrayList<Pergunta>(); 
-        String sql = "SELECT * FROM jogador";
+        String sql = "SELECT * FROM pergunta";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
@@ -59,5 +59,23 @@ public class PerguntaDAO {
             Logger.getLogger(PerguntaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
        return lista;
+    }
+    
+    public boolean excluir(Pergunta pergunta){
+        Boolean retorno;
+        String sql = "DELETE FROM pergunta WHERE id = ?"; 
+        PreparedStatement pst = Conexao.getPreparedStatement(sql);
+        
+        try {
+            pst.setInt(1, pergunta.getId());
+            pst.executeUpdate();
+            retorno = true;         
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        
+        return retorno;
     }
 }

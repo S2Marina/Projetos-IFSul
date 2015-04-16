@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.Pergunta;
+import dao.PerguntaDAO;
 
 public class perguntaListar extends javax.swing.JFrame {
-
-      List<Pergunta> lista;
     public perguntaListar() {
         initComponents();
-        
-        lista = new ArrayList<Pergunta>();
-      
+        PerguntaDAO dao = new PerguntaDAO();
+        List<Pergunta> lista = dao.listar();
+      /*
         Pergunta p = new Pergunta();
         
         p.setEnunciado("Qual a cor do cavalo branco de Napoleão?");
@@ -36,6 +35,7 @@ public class perguntaListar extends javax.swing.JFrame {
         p.setNivel(2);
         
         lista.add(p);
+        */
                
         DefaultTableModel modelo = (DefaultTableModel)tabela.getModel(); 
         

@@ -1,5 +1,6 @@
 package admin;
 
+import dao.PerguntaDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -190,6 +191,7 @@ public class perguntaManter extends javax.swing.JFrame {
 
         jLabel3.setText("ID:");
 
+        txtId.setEnabled(false);
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
@@ -228,13 +230,7 @@ public class perguntaManter extends javax.swing.JFrame {
                                             .addGap(26, 26, 26)
                                             .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel5)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(36, 36, 36)
-                                            .addComponent(txtA, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel7)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(36, 36, 36)
-                                            .addComponent(txtC, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel9)
@@ -242,7 +238,12 @@ public class perguntaManter extends javax.swing.JFrame {
                                             .addGap(18, 18, 18)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(boxNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(boxCerta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addComponent(boxCerta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(36, 36, 36)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtA, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtC, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel1)
                                     .addGap(18, 18, 18)
@@ -313,7 +314,7 @@ public class perguntaManter extends javax.swing.JFrame {
 
     private void btConsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsActionPerformed
         Pergunta p = new Pergunta();
-        String perg = JOptionPane.showInputDialog("Informe o nome a ser pesquisado:");
+        String perg = JOptionPane.showInputDialog("Informe a pergunta a ser pesquisado:");
         int posicaoachou = 0;
         boolean enc = false;
         for (Pergunta pergunta : lista) {
@@ -332,13 +333,23 @@ public class perguntaManter extends javax.swing.JFrame {
             posicaoachou++;
         }
         if (enc == false){
-            JOptionPane.showMessageDialog(null, "Esse jogador não está cadastrado!!!");
+            JOptionPane.showMessageDialog(null, "Essa pergunta não está cadastrada!!!");
         }
     }//GEN-LAST:event_btConsActionPerformed
 
     private void btExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcActionPerformed
-        lista.remove(lista.get(posicao));
-        Limpar();
+        if(txtId.getText().isEmpty() == false){
+            PerguntaDAO dao = new PerguntaDAO();
+            boolean x = dao.excluir(lista.get(posicao));
+            if (x == true){
+                JOptionPane.showMessageDialog(rootPane, "Excluído com sucesso!!!");
+                lista = dao.listar();
+                Limpar();
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Erro ao excluir!!!");
+            }
+        }
     }//GEN-LAST:event_btExcActionPerformed
 
     private void btLimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpActionPerformed
@@ -351,27 +362,28 @@ public class perguntaManter extends javax.swing.JFrame {
 
         if(txtEnunciado.getText().isEmpty() || txtA.getText().isEmpty()|| txtB.getText().isEmpty() || txtC.getText().isEmpty()|| txtD.getText().isEmpty()||boxNivel.getSelectedIndex()==0| boxCerta.getSelectedIndex() == 0 ){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
+            x = false;
         }else{
-            try {
-                  p.setId(Integer.parseInt(txtId.getText()));    
-                  x = true;
-                } catch (Exception e) {
-                    x = false;
-                   JOptionPane.showMessageDialog(rootPane, "O código deve ser numérico!!!");
-                 }
+           x = true;
          }
        
-        p.setEnunciado(txtEnunciado.getText());
-        p.setA(txtA.getText());
-        p.setB(txtB.getText());
-        p.setC(txtC.getText());
-        p.setD(txtD.getText());
-        p.setCerta(boxCerta.getSelectedItem().toString());
-        p.setNivel(Integer.parseInt(boxNivel.getSelectedItem().toString()));
-              
-        JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
-   
-        Limpar();
+        if(x == true){
+            p.setEnunciado(txtEnunciado.getText());
+            p.setA(txtA.getText());
+            p.setB(txtB.getText());
+            p.setC(txtC.getText());
+            p.setD(txtD.getText());
+            p.setCerta(boxCerta.getSelectedItem().toString());
+            p.setNivel(Integer.parseInt(boxNivel.getSelectedItem().toString()));
+            PerguntaDAO dao = new PerguntaDAO();
+            dao.inserir(p);
+            lista = dao.listar();
+            JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
+            Limpar();
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!!!" );
+        }
     }//GEN-LAST:event_btCadActionPerformed
 
     private void btPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrimeiroActionPerformed
@@ -400,7 +412,7 @@ public class perguntaManter extends javax.swing.JFrame {
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, " Não há nenhum jogador cadastrado!!!");
+            JOptionPane.showMessageDialog(null, " Não há nenhuma pergunta cadastrado!!!");
         }
     }//GEN-LAST:event_btPrimeiroActionPerformed
 

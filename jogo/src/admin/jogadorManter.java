@@ -43,13 +43,11 @@ public class jogadorManter extends javax.swing.JFrame {
         btListagem = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Navegação")));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Navega��o")));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         btPrimeiro.setText("Primeiro");
@@ -69,7 +67,7 @@ public class jogadorManter extends javax.swing.JFrame {
         });
         jPanel1.add(btAnterior);
 
-        btProximo.setText("Próximo");
+        btProximo.setText("Pr�ximo");
         btProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btProximoActionPerformed(evt);
@@ -77,7 +75,7 @@ public class jogadorManter extends javax.swing.JFrame {
         });
         jPanel1.add(btProximo);
 
-        btUltimo.setText("Último");
+        btUltimo.setText("�ltimo");
         btUltimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btUltimoActionPerformed(evt);
@@ -85,7 +83,7 @@ public class jogadorManter extends javax.swing.JFrame {
         });
         jPanel1.add(btUltimo);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("A��es"));
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         btCons.setText("Consultar");
@@ -139,14 +137,6 @@ public class jogadorManter extends javax.swing.JFrame {
 
         jLabel5.setText("Senha:");
 
-        jLabel3.setText("ID:");
-
-        txtId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdActionPerformed(evt);
-            }
-        });
-
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSenhaActionPerformed(evt);
@@ -171,24 +161,23 @@ public class jogadorManter extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(29, 29, 29)
-                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtSenha))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtSenha))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel2)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -198,14 +187,7 @@ public class jogadorManter extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,7 +199,7 @@ public class jogadorManter extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(btListagem)
@@ -235,14 +217,12 @@ public class jogadorManter extends javax.swing.JFrame {
 
         posicao = 0;
 
-        Jogador p = lista.get(0);
+        
         if (lista.size()>0){
-            txtId.setText(p.getId().toString());
+            Jogador p = lista.get(0);
             txtEmail.setText(p.getEmail());
             txtLogin.setText(p.getLogin());
             txtSenha.setText(p.getSenha());
-           
-
             if (lista.size() == 1)
             {
                 btProximo.setEnabled(false);
@@ -265,13 +245,12 @@ public class jogadorManter extends javax.swing.JFrame {
         if(posicao > 0){
             posicao = posicao - 1;
             Jogador p = lista.get(posicao);
-            txtId.setText(p.getId().toString());
             txtEmail.setText(p.getEmail());
             txtLogin.setText(p.getLogin());
             txtSenha.setText(p.getSenha());
         }
         else{
-            JOptionPane.showMessageDialog(null, " Não há nenhum jogador cadastrado!!!");
+            JOptionPane.showMessageDialog(null, " N�o h� nenhum jogador cadastrado!!!");
         }
 
     }//GEN-LAST:event_btAnteriorActionPerformed
@@ -285,7 +264,6 @@ public class jogadorManter extends javax.swing.JFrame {
         posicao = posicao + 1;
 
         Jogador p = lista.get(posicao);
-        txtId.setText(p.getId().toString());
         txtEmail.setText(p.getEmail());
         txtLogin.setText(p.getLogin());
         txtSenha.setText(p.getSenha());
@@ -305,7 +283,6 @@ public class jogadorManter extends javax.swing.JFrame {
         posicao = lista.size() - 1;
 
         Jogador p = lista.get(posicao);
-        txtId.setText(p.getId().toString());
         txtEmail.setText(p.getEmail());
         txtLogin.setText(p.getLogin());
         txtSenha.setText(p.getSenha());
@@ -314,9 +291,10 @@ public class jogadorManter extends javax.swing.JFrame {
 
     private void btConsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsActionPerformed
         Jogador p = new Jogador();
-        String nome = JOptionPane.showInputDialog("Informe o nome a ser pesquisado:");
+        String nome = JOptionPane.showInputDialog("Informe o jogador a ser pesquisado:");
         int posicaoachou = 0;
         boolean enc = false;
+        
         for (Jogador jogador : lista) {
             if(nome.equals(p.getLogin())){
                 posicao = posicaoachou;
@@ -326,16 +304,26 @@ public class jogadorManter extends javax.swing.JFrame {
                  txtSenha.setText(p.getSenha());
                 break;
             }
-            posicaoachou++;
+           // posicaoachou++;
         }
         if (enc == false){
-            JOptionPane.showMessageDialog(null, "Esse jogador não está cadastrado!!!");
+            JOptionPane.showMessageDialog(null, "Esse jogador n�o est� cadastrado!!!");
         }
     }//GEN-LAST:event_btConsActionPerformed
 
     private void btExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcActionPerformed
-        lista.remove(lista.get(posicao));
-        Limpar();
+        if(txtLogin.getText().isEmpty() == false){
+            JogadorDAO dao = new JogadorDAO();
+            boolean x = dao.excluir(lista.get(posicao));
+            if (x == true){
+                JOptionPane.showMessageDialog(rootPane, "Exclu�do com sucesso!!!");
+                lista = dao.listar();
+                Limpar();
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Erro ao excluir!!!");
+            }
+        }
     }//GEN-LAST:event_btExcActionPerformed
 
     private void btLimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpActionPerformed
@@ -344,49 +332,40 @@ public class jogadorManter extends javax.swing.JFrame {
 
     private void btCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadActionPerformed
         Jogador p = new Jogador();
-
         Boolean x = false;
 
         if(txtLogin.getText().isEmpty() || txtEmail.getText().isEmpty()|| txtSenha.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
-        }else{
-            try {
-                  p.setId(Integer.parseInt(txtId.getText()));    
-                  x = true;
-                } catch (Exception e) {
-                    x = false;
-                   JOptionPane.showMessageDialog(rootPane, "O código deve ser numérico!!!");
-                 }
-         }
-     
-        p.setLogin(txtLogin.getText());
-        p.setEmail(txtEmail.getText());
-          p.setSenha(txtSenha.getText());
-
+            x = false;
+        }
+        else{
+            p.setLogin(txtLogin.getText());
+            p.setEmail(txtEmail.getText());
+            p.setSenha(txtSenha.getText());
+            x = true;
+        }
+            
         if (x==true){
             JogadorDAO dao = new JogadorDAO();
             dao.inserir(p);
+            lista = dao.listar();
             JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
+            Limpar();
+            
         }
         else{
             JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!!!" );
-        }
-        Limpar();
+        }    
     }//GEN-LAST:event_btCadActionPerformed
 
     private void btListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListagemActionPerformed
         jogadorListar lista = new jogadorListar();
         lista.setVisible(true);
-
         dispose();
     }//GEN-LAST:event_btListagemActionPerformed
 
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdActionPerformed
-
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_txtSenhaActionPerformed
 
        public static void main(String args[]) {
@@ -433,13 +412,11 @@ public class jogadorManter extends javax.swing.JFrame {
     private javax.swing.JButton btUltimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
