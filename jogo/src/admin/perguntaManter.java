@@ -14,7 +14,7 @@ public class perguntaManter extends javax.swing.JFrame {
     public perguntaManter() {
         initComponents();
         lista = new ArrayList<Pergunta>();
-    }
+        }
     
     public void Limpar(){
         txtEnunciado.setText(null);
@@ -264,7 +264,7 @@ public class perguntaManter extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,7 +272,7 @@ public class perguntaManter extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(txtEnunciado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -314,14 +314,16 @@ public class perguntaManter extends javax.swing.JFrame {
 
     private void btConsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsActionPerformed
         Pergunta p = new Pergunta();
-        String perg = JOptionPane.showInputDialog("Informe a pergunta a ser pesquisado:");
+        Integer perg = Integer.parseInt(JOptionPane.showInputDialog("Informe o código da pergunta a ser pesquisada:"));
         int posicaoachou = 0;
         boolean enc = false;
+        
         for (Pergunta pergunta : lista) {
-            if(perg.equals(p.getEnunciado())){
+            if(perg == p.getId()){
                 posicao = posicaoachou;
                 enc = true;
                 txtId.setText(p.getId().toString());
+                txtEnunciado.setText(p.getEnunciado());
                 txtA.setText(p.getA());
                 txtC.setText(p.getC());
                 txtB.setText(p.getB());
@@ -330,7 +332,7 @@ public class perguntaManter extends javax.swing.JFrame {
                 boxCerta.setSelectedItem(p.getCerta());
                 break;
             }
-            posicaoachou++;
+          //  posicaoachou++;
         }
         if (enc == false){
             JOptionPane.showMessageDialog(null, "Essa pergunta não está cadastrada!!!");
@@ -364,10 +366,6 @@ public class perguntaManter extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
             x = false;
         }else{
-           x = true;
-         }
-       
-        if(x == true){
             p.setEnunciado(txtEnunciado.getText());
             p.setA(txtA.getText());
             p.setB(txtB.getText());
@@ -375,6 +373,10 @@ public class perguntaManter extends javax.swing.JFrame {
             p.setD(txtD.getText());
             p.setCerta(boxCerta.getSelectedItem().toString());
             p.setNivel(Integer.parseInt(boxNivel.getSelectedItem().toString()));
+            x = true;
+        }  
+            
+       if(x == true){
             PerguntaDAO dao = new PerguntaDAO();
             dao.inserir(p);
             lista = dao.listar();
@@ -394,8 +396,8 @@ public class perguntaManter extends javax.swing.JFrame {
 
         posicao = 0;
 
-        Pergunta p = lista.get(0);
         if (lista.size()>0){
+            Pergunta p = lista.get(0);
             txtEnunciado.setText(p.getEnunciado());
             txtId.setText(p.getId().toString());
             txtA.setText(p.getA());
@@ -412,7 +414,7 @@ public class perguntaManter extends javax.swing.JFrame {
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, " Não há nenhuma pergunta cadastrado!!!");
+            JOptionPane.showMessageDialog(null, " Não há nenhuma pergunta cadastrada!!!");
         }
     }//GEN-LAST:event_btPrimeiroActionPerformed
 
@@ -486,7 +488,6 @@ public class perguntaManter extends javax.swing.JFrame {
     private void btListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListagemActionPerformed
         perguntaListar lista = new perguntaListar();
         lista.setVisible(true);
-
         dispose();
     }//GEN-LAST:event_btListagemActionPerformed
 

@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Marina/Documents/IFSul/m/meu-projetinho/marinaPessoa/src/dao/CidadeDAO.java</file>
+            <file>file:/C:/Users/Marina/Documents/IFSul/m/meu-projetinho/marinaPessoa/src/Admin/cidadeListar.java</file>
+            <file>file:/C:/Users/Marina/Documents/IFSul/m/meu-projetinho/marinaPessoa/src/dao/PessoaDAO.java</file>
+            <file>file:/C:/Users/Marina/Documents/IFSul/m/meu-projetinho/marinaPessoa/src/Admin/cidadeManter.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -1,44 +1,18 @@
 package Admin;
 
 import Modelo.Pessoa;
+import dao.PessoaDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
         
 public class pessoaListar extends javax.swing.JFrame {
-
-    List<Pessoa> lista;
-    
     public pessoaListar() {
         initComponents();
-        
-        lista = new ArrayList<Pessoa>();
-      
-        Pessoa p = new Pessoa();
-        
-        p.setCod(1);
-        p.setNome("Marina");
-        p.setSexo("F");
-        
-        lista.add(p);
-        
-        p = new Pessoa();
-        
-        p.setCod(2);
-        p.setNome("Maicon");
-        p.setSexo("M");
-        
-        lista.add(p);
-        
-        p = new Pessoa();
-        
-        p.setCod(3);
-        p.setNome("Tiffany");
-        p.setSexo("F");
-        
-        lista.add(p);
-        
+        PessoaDAO dao = new PessoaDAO();
+        List<Pessoa>  lista = dao.listar();
+
         DefaultTableModel modelo = (DefaultTableModel)tabela.getModel(); //pega o modelo da tabela
         
         Object[] linha = new Object[(modelo.getColumnCount())]; //cria um array com a mesma estrutura das colunas

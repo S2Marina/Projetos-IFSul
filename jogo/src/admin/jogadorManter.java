@@ -399,7 +399,6 @@ public class jogadorManter extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAnterior;
     private javax.swing.JButton btCad;

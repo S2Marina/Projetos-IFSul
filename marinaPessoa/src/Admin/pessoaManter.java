@@ -1,6 +1,7 @@
 package Admin;
 
 import Modelo.Pessoa;
+import dao.PessoaDAO;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -95,6 +96,8 @@ public class pessoaManter extends javax.swing.JFrame {
         jPanel1.add(btUltimo);
 
         jLabel1.setText("Código:");
+
+        txtCod.setEnabled(false);
 
         jLabel2.setText("Nome:");
 
@@ -221,22 +224,26 @@ public class pessoaManter extends javax.swing.JFrame {
         
         Boolean x = false;
         
-         if(txtCod.getText().isEmpty() || txtNome.getText().isEmpty()|| boxSexo.getSelectedIndex() == 0){
+         if(txtNome.getText().isEmpty()|| boxSexo.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
         }
          else{
-            try {
-                  p.setCod(Integer.parseInt(txtCod.getText()));    
-                  x = true;
-                } catch (Exception e) {
-                    x = false;
-                   JOptionPane.showMessageDialog(rootPane, "O código deve ser numérico!!!");
-                 }
+             p.setNome(txtNome.getText());
+             p.setSexo(boxSexo.getSelectedItem().toString());
+             x = true;
          }
         
-        p.setCod(Integer.parseInt(txtCod.getText()));
-        p.setNome(txtNome.getText());
-        p.setSexo(boxSexo.getSelectedItem().toString());
+         if(x == true){
+             PessoaDAO dao = new PessoaDAO();
+             dao.inserir(p);
+             lista = dao.listar();
+             JOptionPane.showMessageDialog(rootPane, "Pessoa cadastrada com sucesso!!!");
+             Limpar();
+             }
+         else{
+             JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!!!");
+         }
+        
         
         
          if (x==true){
@@ -250,7 +257,7 @@ public class pessoaManter extends javax.swing.JFrame {
         Pessoa p = new Pessoa();
         String nome = JOptionPane.showInputDialog("Informe o nome a ser pesquisado:");
         int posicaoachou = 0;
-        boolean enc = false;
+        boolean enc = true;
         for (Pessoa pessoa : lista) {
             if(nome.equals(pessoa.getNome())){
                 posicao = posicaoachou;
@@ -277,8 +284,18 @@ public class pessoaManter extends javax.swing.JFrame {
     }//GEN-LAST:event_btLimpActionPerformed
 
     private void btExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcActionPerformed
-        lista.remove(lista.get(posicao));
-        Limpar();
+        if(txtNome.getText().isEmpty() == false){
+            PessoaDAO dao = new PessoaDAO();
+            Boolean x = dao.excluir(lista.get(posicao));
+            if(x == true){
+                JOptionPane.showMessageDialog(rootPane, "Excluído com sucesso!!!");
+                lista = dao.listar();
+                Limpar();
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Erro ao excluir!!!");
+            }
+        }
     }//GEN-LAST:event_btExcActionPerformed
 
     private void btPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrimeiroActionPerformed
@@ -371,6 +388,7 @@ public class pessoaManter extends javax.swing.JFrame {
         posicao = lista.size() - 1;
          
         Pessoa p = lista.get(posicao);
+        txtNome.setText(p.getNome());
         txtCod.setText(p.getCod().toString());
         if(p.getSexo().equals("F")){
              boxSexo.setSelectedIndex(2);

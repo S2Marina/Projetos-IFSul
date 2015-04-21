@@ -4,36 +4,14 @@ import Modelo.Cidade;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import dao.CidadeDAO;
 
 public class cidadeListar extends javax.swing.JFrame {
 
-    List<Cidade> lista;
-    
     public cidadeListar() {
         initComponents();
-        
-        lista = new ArrayList<Cidade>();
-      
-        Cidade c = new Cidade();
-        
-        c.setCod(1);
-        c.setNome("Bagé");
-              
-        lista.add(c);
-        
-        c = new Cidade();
-        
-        c.setCod(2);
-        c.setNome("Dom Pedrito");
-               
-        lista.add(c);
-        
-        c = new Cidade();
-        
-        c.setCod(3);
-        c.setNome("Paris");
-               
-        lista.add(c);
+        CidadeDAO dao = new CidadeDAO();
+        List<Cidade> lista = dao.listar();        
         
         DefaultTableModel modelo = (DefaultTableModel)tabela1.getModel(); 
         
@@ -44,7 +22,7 @@ public class cidadeListar extends javax.swing.JFrame {
             linha[1] = ci.getNome();
             modelo.addRow(linha); 
         }
-        
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -171,20 +149,20 @@ public class cidadeListar extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btGerenciar1)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(btGerenciar1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();

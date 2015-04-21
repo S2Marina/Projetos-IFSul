@@ -1,6 +1,7 @@
 package Admin;
 
 import Modelo.Cidade;
+import dao.CidadeDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -312,8 +313,19 @@ public class cidadeManter extends javax.swing.JFrame {
     }//GEN-LAST:event_btConsActionPerformed
 
     private void btExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcActionPerformed
-        lista.remove(lista.get(posicao));
-        Limpar();
+        if(txtCod.getText().isEmpty() == false){
+            CidadeDAO dao = new CidadeDAO();
+            Boolean x = dao.excluir(lista.get(posicao));
+            if(x = true){
+                JOptionPane.showMessageDialog(rootPane, "Excluido com sucesso!!!" );
+                lista = dao.listar();
+                Limpar();        
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Erro ao excluir!!!" );
+            }
+        }
+        
     }//GEN-LAST:event_btExcActionPerformed
 
     private void btLimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpActionPerformed
@@ -324,27 +336,25 @@ public class cidadeManter extends javax.swing.JFrame {
         Cidade c = new Cidade();
         Boolean x = false;
        
-        if(txtC.getText().isEmpty() || txtN.getText().isEmpty()){
+        if(txtN.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
+            x = false;
         }
         else{
-            try {
-                c.setCod(Integer.parseInt(txtC.getText()));
-                x = true;
-            } catch (Exception e) {
-                x = false;
-                JOptionPane.showMessageDialog(rootPane, "O código deve ser numérico!!!");
-            }
+            c.setNome(txtN.getText());
+            x = true;
         }
-
-        c.setCod(Integer.parseInt(txtC.getText()));
-        c.setNome(txtN.getText());
         
         if (x==true){
-            lista.add(c);
+            CidadeDAO dao = new CidadeDAO();
+            dao.inserir(c);
+            lista = dao.listar();
             JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
+            Limpar();       
         }
-        Limpar();
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!!!" );
+        }
     }//GEN-LAST:event_btCadActionPerformed
 
     private void btListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListagemActionPerformed
