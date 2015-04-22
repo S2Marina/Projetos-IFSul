@@ -13,7 +13,8 @@ public class perguntaManter extends javax.swing.JFrame {
     
     public perguntaManter() {
         initComponents();
-        lista = new ArrayList<Pergunta>();
+        PerguntaDAO dao = new PerguntaDAO();
+        lista = dao.listar();
         }
     
     public void Limpar(){

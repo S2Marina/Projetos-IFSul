@@ -13,7 +13,8 @@ public class pessoaManter extends javax.swing.JFrame {
     
     public pessoaManter() {
         initComponents();
-        lista = new ArrayList<Pessoa>();
+        PessoaDAO dao = new PessoaDAO();
+        lista = dao.listar();
         }
 
     public void Limpar(){

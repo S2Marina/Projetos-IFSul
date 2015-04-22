@@ -13,7 +13,8 @@ public class cidadeManter extends javax.swing.JFrame {
     
     public cidadeManter() {
         initComponents();
-        lista = new ArrayList<Cidade>();
+        CidadeDAO dao = new CidadeDAO();
+        lista = dao.listar();
     }
 
     public void Limpar(){
@@ -144,6 +145,8 @@ public class cidadeManter extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("Cidade");
+
+        txtC.setEnabled(false);
 
         btListagem1.setText("Listagem");
         btListagem1.addActionListener(new java.awt.event.ActionListener() {

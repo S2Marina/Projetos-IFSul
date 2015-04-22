@@ -2,13 +2,12 @@ package Admin;
 
 import Modelo.Pessoa;
 import dao.PessoaDAO;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
         
 public class pessoaListar extends javax.swing.JFrame {
-    public pessoaListar() {
+     public pessoaListar() {
         initComponents();
         PessoaDAO dao = new PessoaDAO();
         List<Pessoa>  lista = dao.listar();
