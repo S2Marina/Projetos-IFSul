@@ -51,7 +51,7 @@ public class CidadeDAO {
   
   public boolean excluir(Cidade c){
       Boolean retorno;
-      String sql = "DELETE FROM cidade  WHERE cod = ?";
+      String sql = "DELETE FROM cidade WHERE cod = ?";
       PreparedStatement pst = Conexao.getPreparedStatement(sql);
       try {
           pst.setInt(1, c.getCod());

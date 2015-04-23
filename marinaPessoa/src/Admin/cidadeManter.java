@@ -319,7 +319,7 @@ public class cidadeManter extends javax.swing.JFrame {
         if(txtCod.getText().isEmpty() == false){
             CidadeDAO dao = new CidadeDAO();
             Boolean x = dao.excluir(lista.get(posicao));
-            if(x = true){
+            if(x == true){
                 JOptionPane.showMessageDialog(rootPane, "Excluido com sucesso!!!" );
                 lista = dao.listar();
                 Limpar();        
