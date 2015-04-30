@@ -68,4 +68,23 @@ public class PessoaDAO {
 
        return retorno;
    }
+   public boolean atualizar(Pessoa p){
+       Boolean retorno;
+       String sql = "UPDATE pessoa SET nome = ?, sexo = ? WHERE cod = ?";
+       PreparedStatement pst = Conexao.getPreparedStatement(sql);
+       try {
+           pst.setString(1, p.getNome());
+           pst.setString(2, p.getSexo());
+           pst.setInt(3, p.getCod());
+                   
+           pst.executeUpdate();
+           retorno = true;
+           
+       } catch (SQLException ex) {
+           ex.printStackTrace();
+           retorno = false;
+       }
+              
+       return retorno;      
+   }
 }

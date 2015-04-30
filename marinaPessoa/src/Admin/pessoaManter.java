@@ -44,6 +44,7 @@ public class pessoaManter extends javax.swing.JFrame {
         btExc = new javax.swing.JButton();
         btLimp = new javax.swing.JButton();
         btCad = new javax.swing.JButton();
+        btAt = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btListagem = new javax.swing.JButton();
 
@@ -145,6 +146,15 @@ public class pessoaManter extends javax.swing.JFrame {
         });
         jPanel3.add(btCad);
 
+        btAt.setText("Atualizar");
+        btAt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btAt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btAt);
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Pessoa");
 
@@ -183,7 +193,7 @@ public class pessoaManter extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addComponent(jLabel4)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btListagem)
@@ -407,6 +417,30 @@ public class pessoaManter extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btListagemActionPerformed
 
+    private void btAtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtActionPerformed
+       if(txtCod.getText().isEmpty()){
+           JOptionPane.showMessageDialog(rootPane, "Registro não informado!!!");
+       }
+       else{
+           Pessoa p = new Pessoa();
+           p.setCod(Integer.parseInt(txtCod.getText()));
+           p.setNome(txtNome.getText());
+           p.setSexo(boxSexo.getSelectedItem().toString());
+           
+           PessoaDAO dao = new PessoaDAO();
+           boolean x;
+           x = dao.atualizar(p);
+           
+           if(x==true){
+             JOptionPane.showMessageDialog(rootPane, "Registro alterado com sucesso!!!");
+           }
+           else{
+               JOptionPane.showMessageDialog(rootPane, "Erro ao alterar o registro!!!");
+           }
+           lista = dao.listar();
+       }
+    }//GEN-LAST:event_btAtActionPerformed
+
     public static void main(String args[]) {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -419,6 +453,7 @@ public class pessoaManter extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox boxSexo;
     private javax.swing.JButton btAnterior;
+    private javax.swing.JButton btAt;
     private javax.swing.JButton btCad;
     private javax.swing.JButton btCons;
     private javax.swing.JButton btExc;
