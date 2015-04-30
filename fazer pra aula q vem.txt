@@ -1,4 +1,4 @@
-atualizar pergunta e jogador
+atualizar jogador
 telas:
 login senha confirma
 tela cadastro

@@ -37,6 +37,7 @@ public class perguntaManter extends javax.swing.JFrame {
         btExc = new javax.swing.JButton();
         btLimp = new javax.swing.JButton();
         btCad = new javax.swing.JButton();
+        btAt = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtEnunciado = new javax.swing.JTextField();
@@ -107,6 +108,15 @@ public class perguntaManter extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btCad);
+
+        btAt.setText("Atualizar");
+        btAt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btAt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btAt);
 
         jLabel5.setText("A:");
 
@@ -260,7 +270,7 @@ public class perguntaManter extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addGap(18, 18, 18)
                                     .addComponent(txtId))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -512,6 +522,31 @@ public class perguntaManter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+    private void btAtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtActionPerformed
+        if(txtId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Registro não informado!!!");
+        }
+        else{
+            Pergunta p = new Pergunta();
+            p.setId(Integer.parseInt(txtId.getText()));
+            p.setEnunciado(txtEnunciado.getText());
+            p.setCerta(boxCerta.getSelectedItem().toString());
+            p.setNivel(Integer.parseInt(boxNivel.getSelectedItem().toString()));
+            
+            PerguntaDAO dao = new PerguntaDAO();
+            boolean x;
+            x = dao.atualizar(p);
+
+            if(x==true){
+                JOptionPane.showMessageDialog(rootPane, "Registro alterado com sucesso!!!");
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Erro ao alterar o registro!!!");
+            }
+            lista = dao.listar();
+        }
+    }//GEN-LAST:event_btAtActionPerformed
+
     public static void main(String args[]) {
         
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -548,6 +583,7 @@ public class perguntaManter extends javax.swing.JFrame {
     private javax.swing.JComboBox boxCerta;
     private javax.swing.JComboBox boxNivel;
     private javax.swing.JButton btAnterior;
+    private javax.swing.JButton btAt;
     private javax.swing.JButton btCad;
     private javax.swing.JButton btCons;
     private javax.swing.JButton btExc;
