@@ -2,58 +2,34 @@ package jogo;
 
 import modelo.Jogador;
 import dao.JogadorDAO;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
-    List<Jogador> lista;
-    int posicao = 0;
-    
+
     public Login() {
         initComponents();
-        JogadorDAO dao = new JogadorDAO(); 
-        lista = dao.listar();
-      }
+    }
+
+      public void Limpar(){
+        txtLogin.setText(null);
+        txtSenha.setText(null);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        btCadastro = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         txtLogin = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btLogin = new javax.swing.JButton();
+        btCadastro = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel3.setText("Cadastre-se para jogar...");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/download.jpg"))); // NOI18N
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-        });
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btCadastro.setForeground(new java.awt.Color(0, 0, 204));
-        btCadastro.setText("Cadastre-se");
-        btCadastro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCadastroActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel4.setText("Ainda não tem um login?");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -115,6 +91,17 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        btCadastro.setForeground(new java.awt.Color(0, 0, 204));
+        btCadastro.setText("Cadastre-se");
+        btCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadastroActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel4.setText("Ainda não tem um login?");
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/download.jpg"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -148,7 +135,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(jLabel4)
@@ -161,39 +148,33 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-        Jogador j = new Jogador();
-        String login = txtLogin.getText();
-        String senha = null;
-        int posicaoachou = 0;
-        Boolean enc = false;
-        Boolean x = true;
-        
-        for (Jogador jogador : lista) {
-            if(login.equals(j.getLogin())){
-                posicao = posicaoachou;
-                enc = true;
-                senha = j.getSenha();
-                break;
+        if(txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
+        }
+        else{
+            Jogador j = new Jogador();
+            j.setLogin(txtLogin.getText());
+            j.setSenha(txtSenha.getText());
+
+            JogadorDAO dao = new JogadorDAO();
+            Jogador retorno = dao.login(j);
+
+            if(retorno == null){
+                JOptionPane.showMessageDialog(rootPane, "Login e/ou senha inválidos!!!");
+                Limpar();
             }
-         }
-        if (enc == false){
-           x = false;
-           JOptionPane.showMessageDialog(null, "Este login não está cadastrado!!!");
+            else{
+                Jogo jogo = new Jogo();
+                jogo.setJogador(retorno);
+                jogo.setVisible(true);
+                this.setVisible(false);
+            }
         }
-        
-        if(!txtSenha.getText().equals(senha)){
-           x = false;
-           JOptionPane.showMessageDialog(null, "Senha incorreta!!!");
-        }
-        
-        if(x == true){
-            Jogo jogo = new Jogo();
-            jogo.setVisible(true);
-         }
+
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void btCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroActionPerformed
@@ -201,17 +182,10 @@ public class Login extends javax.swing.JFrame {
         c.setVisible(true);
     }//GEN-LAST:event_btCadastroActionPerformed
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/d.jpg")));
-    }//GEN-LAST:event_jLabel5MouseClicked
-
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/d.jpg")));
     }//GEN-LAST:event_jLabel6MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -249,9 +223,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtLogin;
