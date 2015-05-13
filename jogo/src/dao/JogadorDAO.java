@@ -101,9 +101,9 @@ public class JogadorDAO {
 
             if(res.next()){
                 retorno = new Jogador();
-                retorno.setLogin("login");
-                retorno.setSenha("senha");
-                retorno.setEmail("email");
+                retorno.setLogin(j.getLogin());
+                retorno.setSenha(j.getSenha());
+                retorno.setEmail(j.getEmail());
             }
 
         } catch (SQLException ex) {
@@ -111,4 +111,36 @@ public class JogadorDAO {
         }
        return retorno;
     }
+    
+    public Boolean igual(String login){
+        List<Jogador> lista = new ArrayList<Jogador>();
+        Boolean retorno = false;
+        String sql = "SELECT * FROM jogador";
+        PreparedStatement pst = Conexao.getPreparedStatement(sql);
+
+        try {
+            ResultSet res = pst.executeQuery();
+            while(res.next()){ 
+                Jogador j = new Jogador();
+                j.setLogin(res.getString("login"));
+                j.setSenha(res.getString("senha"));
+                j.setEmail(res.getString("email"));
+                lista.add(j); 
+                
+                for (Jogador jogador : lista) {
+                    if(jogador.getLogin() == login){
+                        retorno = true;
+                        break;
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JogadorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+       return retorno;
+    }
+    
+  
+  
 }

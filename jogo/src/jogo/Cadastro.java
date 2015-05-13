@@ -174,7 +174,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(140, 140, 140)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(btLogin))
@@ -189,11 +189,11 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btLogin)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -205,35 +205,30 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void txtCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadastroActionPerformed
         Jogador p = new Jogador();
-        Boolean x = false;
-
+        JogadorDAO dao = new JogadorDAO();
+         
         if(txtLogin.getText().isEmpty() || txtEmail.getText().isEmpty() || txtSenha.getText().isEmpty()|| txtSenha2.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!!!");
-            x = false;
-        }
-        else if(!txtSenha.getText().equals(txtSenha2.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Erro na confirmação da senha!!!");
-            x = false;
-        }
-        else{
-            p.setLogin(txtLogin.getText());
-            p.setEmail(txtEmail.getText());
-            p.setSenha(txtSenha.getText());
-            x = true;
-        }
-            
-        if (x==true){
-            JogadorDAO dao = new JogadorDAO();
-            dao.inserir(p);
-            lista = dao.listar();
-            JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
-            Limpar();
-            
-        }
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!!!" );
-            Limpar();
-        }    
+           }
+            else 
+                if(dao.igual(txtLogin.getText()) == false){
+                JOptionPane.showMessageDialog(rootPane, "Esse login já está sendo usado por outro jogador!!!");
+             }
+                else{
+                    if(!txtSenha.getText().equals(txtSenha2.getText())){
+                    JOptionPane.showMessageDialog(rootPane, "Erro na confirmação da senha!!!");
+                }
+                    else{
+                       p.setLogin(txtLogin.getText());
+                       p.setEmail(txtEmail.getText());
+                       p.setSenha(txtSenha.getText());
+                       dao.inserir(p);
+                       lista = dao.listar();
+                       JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!!!" );
+                       Limpar();
+
+                   }    
+                }   
     }//GEN-LAST:event_txtCadastroActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
