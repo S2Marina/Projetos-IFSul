@@ -103,29 +103,4 @@ public class PerguntaDAO {
               
        return retorno;      
    }
-    
-   public List<Pergunta> listarNivel(Integer nivel){
-       List<Pergunta> retorno = new ArrayList<Pergunta>();
-       String sql ="SELECT * FROM pergunta WHERE nivel=? ORDER BY random() limit 3";
-       PreparedStatement pst = Conexao.getPreparedStatement(sql);
-       try {
-           pst.setInt(1, nivel);
-           ResultSet res = pst.executeQuery();
-
-            while(res.next()){ 
-                Pergunta p = new Pergunta();
-                p.setEnunciado(res.getString("enunciado"));
-                p.setA(res.getString("a"));
-                p.setB(res.getString("b"));
-                p.setC(res.getString("c"));
-                p.setD(res.getString("d"));
-                p.setCerta(res.getString("certa"));   
-                retorno.add(p);
-            }
-
-       } catch (Exception e) {
-           e.printStackTrace();
-       }
-       return retorno;
-   }
 }
