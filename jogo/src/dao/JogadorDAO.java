@@ -67,4 +67,80 @@ public class JogadorDAO {
         
         return retorno;
     }
+    
+    public boolean atualizar(Jogador jogador){
+        Boolean retorno;
+        String sql = "UPDATE jogador SET senha = ?, email = ? WHERE login = ?"; 
+        PreparedStatement pst = Conexao.getPreparedStatement(sql);
+        
+        try {
+            pst.setString(1,jogador.getSenha());
+            pst.setString(2,jogador.getEmail());
+            pst.setString(3,jogador.getLogin());
+            pst.executeUpdate();
+            retorno = true;         
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        
+        return retorno;
+    }
+    
+    public Jogador login(Jogador j){
+        Jogador retorno = null;
+        String sql = "SELECT * FROM jogador WHERE login = ? AND senha = ?";
+         PreparedStatement pst = Conexao.getPreparedStatement(sql);
+        
+        try {
+            pst.setString(1,j.getLogin());
+            pst.setString(2,j.getSenha());
+            
+            ResultSet res = pst.executeQuery();
+
+            if(res.next()){
+                retorno = new Jogador();
+                retorno.setLogin(j.getLogin());
+                retorno.setSenha(j.getSenha());
+                retorno.setEmail(j.getEmail());
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+       return retorno;
+    }
+    
+    public Boolean igual(String login){
+        List<Jogador> lista = new ArrayList<Jogador>();
+        Boolean retorno = false;
+        String sql = "SELECT * FROM jogador";
+        PreparedStatement pst = Conexao.getPreparedStatement(sql);
+
+        try {
+            ResultSet res = pst.executeQuery();
+            while(res.next()){ 
+                Jogador j = new Jogador();
+                j.setLogin(res.getString("login"));
+                j.setSenha(res.getString("senha"));
+                j.setEmail(res.getString("email"));
+                lista.add(j); 
+                
+                for (Jogador jogador : lista) {
+                    if(jogador.getLogin() == login){
+                        retorno = true;
+                        break;
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JogadorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+       return retorno;
+    }
+    
+  
+  
 }
