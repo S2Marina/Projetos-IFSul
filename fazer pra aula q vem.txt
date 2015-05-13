@@ -1,6 +1,5 @@
-atualizar jogador
 telas:
-login senha confirma
-tela cadastro
-tela jogo (parar, confirmar, pular, cartas)
-fim
+login senha confirma**
+tela cadastro**
+tela jogo (parar, confirmar, pular, cartas)*
+fim*

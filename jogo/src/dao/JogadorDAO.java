@@ -67,4 +67,48 @@ public class JogadorDAO {
         
         return retorno;
     }
+    
+    public boolean atualizar(Jogador jogador){
+        Boolean retorno;
+        String sql = "UPDATE jogador SET senha = ?, email = ? WHERE login = ?"; 
+        PreparedStatement pst = Conexao.getPreparedStatement(sql);
+        
+        try {
+            pst.setString(1,jogador.getSenha());
+            pst.setString(2,jogador.getEmail());
+            pst.setString(3,jogador.getLogin());
+            pst.executeUpdate();
+            retorno = true;         
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            retorno = false;
+        }
+        
+        return retorno;
+    }
+    
+    public Jogador login(Jogador j){
+        Jogador retorno = null;
+        String sql = "SELECT * FROM jogador WHERE login = ? AND senha = ?";
+         PreparedStatement pst = Conexao.getPreparedStatement(sql);
+        
+        try {
+            pst.setString(1,j.getLogin());
+            pst.setString(2,j.getSenha());
+            
+            ResultSet res = pst.executeQuery();
+
+            if(res.next()){
+                retorno = new Jogador();
+                retorno.setLogin("login");
+                retorno.setSenha("senha");
+                retorno.setEmail("email");
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+       return retorno;
+    }
 }

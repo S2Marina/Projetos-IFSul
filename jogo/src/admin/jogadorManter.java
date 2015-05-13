@@ -13,9 +13,10 @@ public class jogadorManter extends javax.swing.JFrame {
     
     public jogadorManter() {
         initComponents();
-        lista = new ArrayList<Jogador>();
+        JogadorDAO dao = new JogadorDAO();
+        lista = dao.listar();
     }
-    
+   
     public void Limpar(){
         txtLogin.setText(null);
         txtSenha.setText(null);
@@ -37,6 +38,7 @@ public class jogadorManter extends javax.swing.JFrame {
         btExc = new javax.swing.JButton();
         btLimp = new javax.swing.JButton();
         btCad = new javax.swing.JButton();
+        btAt = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -47,7 +49,7 @@ public class jogadorManter extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Navega��o")));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Navegação")));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         btPrimeiro.setText("Primeiro");
@@ -67,7 +69,7 @@ public class jogadorManter extends javax.swing.JFrame {
         });
         jPanel1.add(btAnterior);
 
-        btProximo.setText("Pr�ximo");
+        btProximo.setText("Próximo");
         btProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btProximoActionPerformed(evt);
@@ -75,7 +77,7 @@ public class jogadorManter extends javax.swing.JFrame {
         });
         jPanel1.add(btProximo);
 
-        btUltimo.setText("�ltimo");
+        btUltimo.setText("Último");
         btUltimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btUltimoActionPerformed(evt);
@@ -83,7 +85,7 @@ public class jogadorManter extends javax.swing.JFrame {
         });
         jPanel1.add(btUltimo);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("A��es"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         btCons.setText("Consultar");
@@ -121,6 +123,15 @@ public class jogadorManter extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btCad);
+
+        btAt.setText("Atualizar");
+        btAt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btAt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btAt);
 
         jLabel1.setText("Login:");
 
@@ -178,7 +189,7 @@ public class jogadorManter extends javax.swing.JFrame {
                                             .addComponent(jLabel2)
                                             .addGap(18, 18, 18)
                                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,6 +379,31 @@ public class jogadorManter extends javax.swing.JFrame {
     
     }//GEN-LAST:event_txtSenhaActionPerformed
 
+    private void btAtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtActionPerformed
+        if(txtLogin.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Registro não informado!!!");
+        }
+        else{
+            Jogador j= new Jogador();
+            j.setLogin(txtLogin.getText());
+            j.setEmail(txtEmail.getText());
+            j.setSenha(txtSenha.getText());
+            
+            
+            JogadorDAO dao = new JogadorDAO();
+            boolean x;
+            x = dao.atualizar(j);
+
+            if(x==true){
+                JOptionPane.showMessageDialog(rootPane, "Registro alterado com sucesso!!!");
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Erro ao alterar o registro!!!");
+            }
+            lista = dao.listar();
+        }
+    }//GEN-LAST:event_btAtActionPerformed
+
        public static void main(String args[]) {
         
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -401,6 +437,7 @@ public class jogadorManter extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAnterior;
+    private javax.swing.JButton btAt;
     private javax.swing.JButton btCad;
     private javax.swing.JButton btCons;
     private javax.swing.JButton btExc;
