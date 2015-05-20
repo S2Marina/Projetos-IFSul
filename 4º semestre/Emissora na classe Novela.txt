@@ -1,0 +1,12 @@
+ - Passar emissora de String para Emissora;
+    //private Emissora emissora;
+ - Mexer no get e no set;
+ - Inicializar a variável emissora no método construtor;
+    //public Novela(){
+        this.emissora = new Emissora();
+    }
+
+****************************************************************************** 
+
+// Mostrar endereço da emissora na classe novela;
+// System.out.println(novela.getEmissora().getEndereco());

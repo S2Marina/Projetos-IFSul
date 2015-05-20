@@ -1,0 +1,45 @@
+Lista:
+
+package caixa.v2;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Lista {
+    public static void main(String[] args) {
+        List<String> jogadores = new ArrayList<String>();
+        jogadores.add("a");
+        jogadores.add("b");
+        jogadores.add("c");
+        
+        for (int i = 0; i < jogadores.size(); i++) {
+            System.out.println(jogadores.get(i));
+        }
+        jogadores.remove(1);     
+    
+    }
+    
+}
+
+----------------------------------------------------
+package caixa.v2;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Lista {
+    public static void main(String[] args) {
+        List<String> jogadores = new ArrayList<String>();
+        jogadores.add("f");
+        jogadores.add("z");
+        jogadores.add("a");
+        
+        for (String jog : jogadores) {
+            System.out.println(jog);
+        }
+        
+        
+
+    }
+    
+}
