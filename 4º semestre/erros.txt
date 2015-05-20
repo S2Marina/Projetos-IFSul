@@ -1,7 +1,0 @@
-Novela:
-  -Consultar;
-
-Ator:
-  -Consultar;
-  -Exibir ganhos;
-
