@@ -4,14 +4,14 @@ public class JogoCompleto {
     private Integer pular;
     private Integer cartas;
     private Integer placas;
-    private Double ganhos;
+    private Integer ganhos;
     
     public JogoCompleto() {
-        this.jogador = jogador;
-        this.pular = pular;
-        this.cartas = cartas;
-        this.placas = placas;
-        this.ganhos = ganhos;
+        this.jogador = null;
+        this.pular = 1;
+        this.cartas = 1;
+        this.placas = 1;
+        this.ganhos = 0;
     }
 
     public Jogador getJogador() {
@@ -46,11 +46,11 @@ public class JogoCompleto {
         this.placas = placas;
     }
 
-    public Double getGanhos() {
+    public Integer getGanhos() {
         return ganhos;
     }
 
-    public void setGanhos(Double ganhos) {
+    public void setGanhos(Integer ganhos) {
         this.ganhos = ganhos;
     }
 }

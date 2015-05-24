@@ -1,20 +1,22 @@
 package jogo;
 
-import modelo.Jogador;
+import audio.Audio;
 import dao.PerguntaDAO;
 import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import modelo.Jogador;
 import modelo.JogoCompleto;
 import modelo.Pergunta;
 
 public class Jogo extends javax.swing.JFrame {
     
     private Integer nivel;
-    private Integer premio;
+    private Integer premio = 2500;
     private Jogador jogador;
+    JogoCompleto completo;
     ButtonGroup bg;
-    
+
     public Jogador getJogador() {
         return jogador;
     }
@@ -58,9 +60,9 @@ public class Jogo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        acertar = new javax.swing.JLabel();
         errar = new javax.swing.JLabel();
         parar = new javax.swing.JLabel();
-        acertar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -73,6 +75,35 @@ public class Jogo extends javax.swing.JFrame {
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
+            }
+        });
+
+        btA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btAMouseClicked(evt);
+            }
+        });
+        btA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAActionPerformed(evt);
+            }
+        });
+
+        btB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBActionPerformed(evt);
+            }
+        });
+
+        btC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCActionPerformed(evt);
+            }
+        });
+
+        btD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDActionPerformed(evt);
             }
         });
 
@@ -116,11 +147,11 @@ public class Jogo extends javax.swing.JFrame {
 
         jLabel9.setText("Acertar");
 
-        errar.setText("000");
+        acertar.setText("2500");
 
-        parar.setText("0000");
+        errar.setText("0");
 
-        acertar.setText("0000");
+        parar.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,21 +164,18 @@ public class Jogo extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(123, 123, 123))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(errar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(parar)
-                                        .addComponent(jLabel8)))
-                                .addGap(18, 18, 18)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                .addGap(10, 10, 10)
+                                .addComponent(errar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(parar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
                             .addComponent(acertar))
                         .addGap(22, 22, 22))))
@@ -172,10 +200,10 @@ public class Jogo extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acertar)
                     .addComponent(errar)
-                    .addComponent(parar)
-                    .addComponent(acertar))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(parar))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,7 +236,7 @@ public class Jogo extends javax.swing.JFrame {
                                             .addComponent(btB, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addGap(28, 28, 28)
                                         .addComponent(jLabel2)))
-                                .addGap(0, 52, Short.MAX_VALUE)))
+                                .addGap(0, 78, Short.MAX_VALUE)))
                         .addGap(35, 35, 35)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))))
@@ -254,6 +282,9 @@ public class Jogo extends javax.swing.JFrame {
 
 
     private void btConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmaActionPerformed
+        JogoCompleto jc = new JogoCompleto();
+        Audio audio = new Audio();
+        Integer ganhos = jc.getGanhos();
         boolean acertou = false;
         String x= null;
         
@@ -269,44 +300,60 @@ public class Jogo extends javax.swing.JFrame {
         else if(btD.isSelected() == true){
             x = "D";
         }
-        
-             
-        if(x.equals(at.getCerta())){
-            acertou = true;
-            JOptionPane.showMessageDialog(null, "Certa");
-        }
-        else{
+                     
+        if(!x.equals(at.getCerta())){
             acertou = false;
             JOptionPane.showMessageDialog(null, "Errada");
             Fim f = new Fim();
+            f.completo(jc);
             f.setVisible(true);
             this.setVisible(false);
-        }
-        
-        PerguntaDAO dao = new PerguntaDAO();
-        perguntas.remove(0);
-        if(perguntas.isEmpty())
-        {
-            nivel ++;
             
-            if (nivel >= 3)
-            {
-                Fim tela = new Fim();
-                tela.setVisible(true);
-                this.setVisible(false);
-                return;
-            }
-            perguntas = dao.listarNivel(nivel);
         }
-        at = perguntas.get(0);
- 
-        lblPergunta.setText(at.getEnunciado());
-        btA.setText(at.getA());
-        btB.setText(at.getB());
-        btC.setText(at.getC());
-        btD.setText(at.getD());
+        else{
+            audio.tocar("certa.wav");
+            acertou = true;
+            JOptionPane.showMessageDialog(null, "Certa");
+            ganhos = ganhos + premio;
+            jc.setGanhos(ganhos);
+            System.out.println(ganhos);
+            
 
-        bg.clearSelection();
+            PerguntaDAO dao = new PerguntaDAO();
+            perguntas.remove(0);
+            if(perguntas.isEmpty())
+            {
+                nivel ++;
+                premio = premio * nivel;
+
+                if (nivel >= 3)
+                {
+                    Fim tela = new Fim();
+                    tela.setVisible(true);
+                    this.setVisible(false);
+                    return;
+                }
+                perguntas = dao.listarNivel(nivel);
+            }
+            at = perguntas.get(0);
+
+            lblPergunta.setText(at.getEnunciado());
+            btA.setText(at.getA());
+            btB.setText(at.getB());
+            btC.setText(at.getC());
+            btD.setText(at.getD());
+            
+            //mostrar pontuação
+            Integer acerto;
+            acerto = ganhos + premio;
+            acertar.setText(acerto.toString());
+            parar.setText(ganhos.toString());
+            Integer metade;
+            metade = ganhos / 2;
+            errar.setText(metade.toString());
+            
+            bg.clearSelection();
+        }
     }//GEN-LAST:event_btConfirmaActionPerformed
 
     private void btPularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPularActionPerformed
@@ -322,8 +369,8 @@ public class Jogo extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         jLabel4.setText(jogador.getLogin());
         
-        JogoCompleto comp = new JogoCompleto();
-        comp.setJogador(jogador);
+        JogoCompleto jc = new JogoCompleto();
+        jc.setJogador(jogador);
         premio = 2500;
         
         PerguntaDAO dao = new PerguntaDAO();
@@ -336,8 +383,39 @@ public class Jogo extends javax.swing.JFrame {
         btC.setText(at.getC());
         btD.setText(at.getD());
                    
-        
     }//GEN-LAST:event_formWindowOpened
+
+    private void btAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAMouseClicked
+        
+    }//GEN-LAST:event_btAMouseClicked
+
+    private void btBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBActionPerformed
+        Audio audio = new Audio();
+        if(btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true){
+           audio.tocar("certeza.wav");
+        }
+    }//GEN-LAST:event_btBActionPerformed
+
+    private void btAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAActionPerformed
+       Audio audio = new Audio();
+        if(btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true){
+           audio.tocar("certeza.wav");
+        }
+    }//GEN-LAST:event_btAActionPerformed
+
+    private void btCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCActionPerformed
+        Audio audio = new Audio();
+        if(btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true){
+           audio.tocar("certeza.wav");
+        }
+    }//GEN-LAST:event_btCActionPerformed
+
+    private void btDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDActionPerformed
+        Audio audio = new Audio();
+        if(btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true){
+           audio.tocar("certeza.wav");
+        }
+    }//GEN-LAST:event_btDActionPerformed
 
         public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
