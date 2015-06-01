@@ -14,7 +14,10 @@ public class Jogo extends javax.swing.JFrame {
     private Integer nivel;
     private Integer premio = 2500;
     private Jogador jogador;
-    JogoCompleto completo;
+    private Integer ganhos;
+    private Integer err;
+    private Integer acert;
+    private JogoCompleto completo;
     ButtonGroup bg;
 
     public Jogador getJogador() {
@@ -115,6 +118,7 @@ public class Jogo extends javax.swing.JFrame {
         });
 
         btPular.setText("Pular");
+        btPular.setEnabled(false);
         btPular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPularActionPerformed(evt);
@@ -282,9 +286,10 @@ public class Jogo extends javax.swing.JFrame {
 
 
     private void btConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmaActionPerformed
-        JogoCompleto jc = new JogoCompleto();
+        JogoCompleto completo = new JogoCompleto();
         Audio audio = new Audio();
-        Integer ganhos = jc.getGanhos();
+        ganhos = completo.getGanhos();
+        
         boolean acertou = false;
         String x= null;
         
@@ -304,8 +309,10 @@ public class Jogo extends javax.swing.JFrame {
         if(!x.equals(at.getCerta())){
             acertou = false;
             JOptionPane.showMessageDialog(null, "Errada");
+            
+            completo.setGanhos(err);
             Fim f = new Fim();
-            f.completo(jc);
+            f.setCompleto(completo);
             f.setVisible(true);
             this.setVisible(false);
             
@@ -314,8 +321,9 @@ public class Jogo extends javax.swing.JFrame {
             audio.tocar("certa.wav");
             acertou = true;
             JOptionPane.showMessageDialog(null, "Certa");
+            
             ganhos = ganhos + premio;
-            jc.setGanhos(ganhos);
+            completo.setGanhos(ganhos);
             System.out.println(ganhos);
             
 
@@ -328,7 +336,9 @@ public class Jogo extends javax.swing.JFrame {
 
                 if (nivel >= 3)
                 {
+                    completo.setGanhos(acert);
                     Fim tela = new Fim();
+                    tela.setCompleto(completo);                  
                     tela.setVisible(true);
                     this.setVisible(false);
                     return;
@@ -344,24 +354,53 @@ public class Jogo extends javax.swing.JFrame {
             btD.setText(at.getD());
             
             //mostrar pontuação
-            Integer acerto;
-            acerto = ganhos + premio;
-            acertar.setText(acerto.toString());
+            //se eu acertar
+            acert  = ganhos + premio;
+            acertar.setText(acert.toString());
+            
+            //se eu parar
             parar.setText(ganhos.toString());
-            Integer metade;
-            metade = ganhos / 2;
-            errar.setText(metade.toString());
+            
+            //se eu errar
+            err = ganhos / 2;
+            errar.setText(err.toString());
             
             bg.clearSelection();
         }
     }//GEN-LAST:event_btConfirmaActionPerformed
 
     private void btPularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPularActionPerformed
-      
+            PerguntaDAO dao = new PerguntaDAO();
+            perguntas.remove(0);
+            if(perguntas.isEmpty())
+            {
+                nivel ++;
+                premio = premio * nivel;
+
+                if (nivel >= 3)
+                {
+                    completo.setGanhos(acert);
+                    Fim tela = new Fim();
+                    tela.setCompleto(completo);                  
+                    tela.setVisible(true);
+                    this.setVisible(false);
+                    return;
+                }
+                perguntas = dao.listarNivel(nivel);
+            }
+            at = perguntas.get(0);
+
+            lblPergunta.setText(at.getEnunciado());
+            btA.setText(at.getA());
+            btB.setText(at.getB());
+            btC.setText(at.getC());
+            btD.setText(at.getD());
+            
     }//GEN-LAST:event_btPularActionPerformed
 
     private void btPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPararActionPerformed
         Fim f = new Fim();
+        f.setCompleto(completo);
         f.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btPararActionPerformed
@@ -369,8 +408,8 @@ public class Jogo extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         jLabel4.setText(jogador.getLogin());
         
-        JogoCompleto jc = new JogoCompleto();
-        jc.setJogador(jogador);
+        JogoCompleto completo = new JogoCompleto();
+        completo.setJogador(jogador);
         premio = 2500;
         
         PerguntaDAO dao = new PerguntaDAO();
@@ -382,7 +421,7 @@ public class Jogo extends javax.swing.JFrame {
         btB.setText(at.getB());
         btC.setText(at.getC());
         btD.setText(at.getD());
-                   
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAMouseClicked
