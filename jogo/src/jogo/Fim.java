@@ -1,8 +1,6 @@
 package jogo;
 
 import dao.RankingDAO;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -15,21 +13,13 @@ public class Fim extends javax.swing.JFrame {
         public Fim() {
         initComponents();
     }
-
-    public JogoCompleto getCompleto() {
-        return completo;
-    }
-
-    public void setCompleto(JogoCompleto completo) {
-        this.completo = completo;
-    }
-    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        errar = new javax.swing.JLabel();
+        valor = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -47,9 +37,9 @@ public class Fim extends javax.swing.JFrame {
             }
         });
 
-        errar.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
-        errar.setForeground(new java.awt.Color(0, 0, 153));
-        errar.setText("$$$");
+        valor.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
+        valor.setForeground(new java.awt.Color(0, 0, 153));
+        valor.setText("$$$");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/download.jpg"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,7 +58,6 @@ public class Fim extends javax.swing.JFrame {
 
         tabela.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tabela.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        tabela.setForeground(new java.awt.Color(240, 240, 240));
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -104,7 +93,7 @@ public class Fim extends javax.swing.JFrame {
                         .addGap(149, 149, 149)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(errar))
+                        .addComponent(valor))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(191, 191, 191)
                         .addComponent(jLabel7)))
@@ -128,7 +117,7 @@ public class Fim extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(errar)
+                    .addComponent(valor)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,15 +132,14 @@ public class Fim extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        errar.setText(completo.getGanhos().toString());
+        valor.setText(completo.getGanhos().toString());
  
         RankingDAO dao = new RankingDAO();  
         Ranking r = new Ranking();
         
         r.setJogador(completo.getJogador());
         r.setPontos(completo.getGanhos());
-     //   r.setData();
-        
+        r.setData(new Date());
         dao.inserir(r);
         
         List <Ranking> lista = dao.listar();        
@@ -159,10 +147,10 @@ public class Fim extends javax.swing.JFrame {
         DefaultTableModel modelo= (DefaultTableModel)tabela.getModel();
         Object[] linha = new Object[modelo.getColumnCount()];
 
-         for (Ranking per : lista){
-             linha[0] = per.getJogador();
-             linha[1] = per.getPontos();
-             linha[2] = per.getData();
+         for (Ranking ran : lista){
+             linha[0] = ran.getJogador().getLogin();
+             linha[1] = ran.getPontos();
+             linha[2] = ran.getData();
              modelo.addRow(linha);
          }
     }//GEN-LAST:event_formWindowOpened
@@ -190,7 +178,6 @@ public class Fim extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Fim().setVisible(true);
@@ -199,13 +186,13 @@ public class Fim extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel errar;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
+    private javax.swing.JLabel valor;
     // End of variables declaration//GEN-END:variables
 
     }

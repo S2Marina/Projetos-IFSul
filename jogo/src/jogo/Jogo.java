@@ -14,9 +14,10 @@ public class Jogo extends javax.swing.JFrame {
     private Integer nivel;
     private Integer premio = 2500;
     private Jogador jogador;
-    private Integer ganhos;
+    private Integer ganhos = 0;
     private Integer err;
     private Integer acert;
+    private Integer clique = 0; 
     private JogoCompleto completo;
     ButtonGroup bg;
 
@@ -111,6 +112,11 @@ public class Jogo extends javax.swing.JFrame {
         });
 
         btConfirma.setText("Confirma");
+        btConfirma.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btConfirmaMouseClicked(evt);
+            }
+        });
         btConfirma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btConfirmaActionPerformed(evt);
@@ -118,7 +124,6 @@ public class Jogo extends javax.swing.JFrame {
         });
 
         btPular.setText("Pular");
-        btPular.setEnabled(false);
         btPular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPularActionPerformed(evt);
@@ -286,10 +291,14 @@ public class Jogo extends javax.swing.JFrame {
 
 
     private void btConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmaActionPerformed
+        clique++;
+        
         JogoCompleto completo = new JogoCompleto();
+        PerguntaDAO dao = new PerguntaDAO();
         Audio audio = new Audio();
         ganhos = completo.getGanhos();
         
+       //confere qual eu marquei
         boolean acertou = false;
         String x= null;
         
@@ -306,30 +315,30 @@ public class Jogo extends javax.swing.JFrame {
             x = "D";
         }
                      
+        //se eu errei
         if(!x.equals(at.getCerta())){
             acertou = false;
             JOptionPane.showMessageDialog(null, "Errada");
             
-            completo.setGanhos(err);
             Fim f = new Fim();
-            f.setCompleto(completo);
+            completo.setGanhos(err);
+            f.completo = completo;
             f.setVisible(true);
             this.setVisible(false);
             
         }
         else{
+            //se eu acertei
             audio.tocar("certa.wav");
             acertou = true;
             JOptionPane.showMessageDialog(null, "Certa");
             
             ganhos = ganhos + premio;
             completo.setGanhos(ganhos);
-            System.out.println(ganhos);
             
-
-            PerguntaDAO dao = new PerguntaDAO();
+            //passa pra proxima pergunta
             perguntas.remove(0);
-            if(perguntas.isEmpty())
+            if(clique == 3) 
             {
                 nivel ++;
                 premio = premio * nivel;
@@ -338,7 +347,8 @@ public class Jogo extends javax.swing.JFrame {
                 {
                     completo.setGanhos(acert);
                     Fim tela = new Fim();
-                    tela.setCompleto(completo);                  
+                    completo.setGanhos(ganhos);   
+                    tela.completo = completo;
                     tela.setVisible(true);
                     this.setVisible(false);
                     return;
@@ -347,13 +357,14 @@ public class Jogo extends javax.swing.JFrame {
             }
             at = perguntas.get(0);
 
+            //mostra a proxima pergunta
             lblPergunta.setText(at.getEnunciado());
             btA.setText(at.getA());
             btB.setText(at.getB());
             btC.setText(at.getC());
             btD.setText(at.getD());
             
-            //mostrar pontuação
+            //mostrar pontuação nos labels
             //se eu acertar
             acert  = ganhos + premio;
             acertar.setText(acert.toString());
@@ -372,8 +383,8 @@ public class Jogo extends javax.swing.JFrame {
     private void btPularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPularActionPerformed
             PerguntaDAO dao = new PerguntaDAO();
             perguntas.remove(0);
-            if(perguntas.isEmpty())
-            {
+            if(clique == 3)
+            { 
                 nivel ++;
                 premio = premio * nivel;
 
@@ -381,7 +392,8 @@ public class Jogo extends javax.swing.JFrame {
                 {
                     completo.setGanhos(acert);
                     Fim tela = new Fim();
-                    tela.setCompleto(completo);                  
+                    completo.setGanhos(ganhos);   
+                    tela.completo = completo;                
                     tela.setVisible(true);
                     this.setVisible(false);
                     return;
@@ -396,19 +408,21 @@ public class Jogo extends javax.swing.JFrame {
             btC.setText(at.getC());
             btD.setText(at.getD());
             
+            btPular.setEnabled(false);
     }//GEN-LAST:event_btPularActionPerformed
 
     private void btPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPararActionPerformed
         Fim f = new Fim();
-        f.setCompleto(completo);
+        completo.setGanhos(ganhos);   
+        f.completo = completo;
         f.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btPararActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        jLabel4.setText(jogador.getLogin());
+        completo = new JogoCompleto();
         
-        JogoCompleto completo = new JogoCompleto();
+        jLabel4.setText(jogador.getLogin());
         completo.setJogador(jogador);
         premio = 2500;
         
@@ -455,6 +469,10 @@ public class Jogo extends javax.swing.JFrame {
            audio.tocar("certeza.wav");
         }
     }//GEN-LAST:event_btDActionPerformed
+
+    private void btConfirmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btConfirmaMouseClicked
+       
+    }//GEN-LAST:event_btConfirmaMouseClicked
 
         public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

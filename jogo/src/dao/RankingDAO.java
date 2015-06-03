@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import modelo.Jogador;
 import modelo.Ranking;
 
 public class RankingDAO {
@@ -17,14 +17,13 @@ public class RankingDAO {
      public Boolean inserir(Ranking r)
     {
         Boolean retorno;
-       String sql= "INSERT INTO ranking(login, pontos, data) VALUES (?, ?, ? )"; 
+        String sql= "INSERT INTO ranking(login, pontos, data) VALUES (?,?,?)"; 
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
         try
         {
         pst.setString(1,r.getJogador().getLogin());
         pst.setInt(2,r.getPontos());
         pst.setDate(3,new Date(r.getData().getTime()));
-        
         pst.executeUpdate();
         retorno = true ;
         }
@@ -51,6 +50,9 @@ public class RankingDAO {
              r.getJogador().setLogin(res.getString("login"));
              r.setPontos(res.getInt("pontos"));
              r.setData(res.getDate("data"));
+             /*Jogador j = new Jogador();
+             j.setLogin(res.getString("login"));
+             r.setJogador(j);*/
              lista.add(r);
          }
          }
