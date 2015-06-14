@@ -138,6 +138,11 @@ public class Jogo extends javax.swing.JFrame {
         });
 
         btCartas.setText("Cartas");
+        btCartas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCartasActionPerformed(evt);
+            }
+        });
 
         lblPergunta.setForeground(new java.awt.Color(0, 0, 204));
         lblPergunta.setText("Pergunta");
@@ -474,6 +479,12 @@ public class Jogo extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btConfirmaMouseClicked
 
+    private void btCartasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCartasActionPerformed
+       Cartas c = new Cartas();
+       c.setVisible(true);
+  
+    }//GEN-LAST:event_btCartasActionPerformed
+
         public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -500,9 +511,71 @@ public class Jogo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Jogo().setVisible(true);
-            }
+               }
         });
-    }
+        
+        }
+        
+         public void carta(Integer x){
+            if(x==1){
+                if(at.getCerta().equals("A")){
+                    btB.setEnabled(false);
+                }
+                else if(at.getCerta().equals("B")){
+                    btC.setEnabled(false);
+                }
+                else if(at.getCerta().equals("C")){
+                    btD.setEnabled(false);
+                }
+                else{
+                    btA.setEnabled(false);
+                }
+            }
+            else if(x==2){
+                if(at.getCerta().equals("A")){
+                    btB.setEnabled(false);
+                    btC.setEnabled(false);
+                }
+                else if(at.getCerta().equals("B")){
+                    btC.setEnabled(false);
+                    btD.setEnabled(false);
+
+                }
+                else if(at.getCerta().equals("C")){
+                    btD.setEnabled(false);
+                    btA.setEnabled(false);
+
+                }
+                else{
+                    btA.setEnabled(false);
+                    btB.setEnabled(false);
+                }
+            }
+            else{
+                if(at.getCerta().equals("A")){
+                    btB.setEnabled(false);
+                    btC.setEnabled(false);
+                    btD.setEnabled(false);
+                }
+                else if(at.getCerta().equals("B")){
+                    btC.setEnabled(false);
+                    btD.setEnabled(false);
+                    btA.setEnabled(false);
+                }
+                else if(at.getCerta().equals("C")){
+                    btD.setEnabled(false);
+                    btA.setEnabled(false);
+                    btB.setEnabled(false);
+                }
+                else{
+                    btA.setEnabled(false);
+                    btB.setEnabled(false);
+                    btC.setEnabled(false);
+                }
+            }
+          btCartas.setEnabled(false);   
+        }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acertar;

@@ -11,13 +11,14 @@ import modelo.Jogador;
 public class JogadorDAO {
     public boolean inserir(Jogador jogador){
         Boolean retorno;
-        String sql = "INSERT INTO jogador(login,senha,email) VALUES(?,?,?)"; //monta o sql de insert na tabela
+        String sql = "INSERT INTO jogador(login,senha,email,imagens) VALUES(?,?,?,?)"; //monta o sql de insert na tabela
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
         
         try {
             pst.setString(1,jogador.getLogin());
             pst.setString(2,jogador.getSenha());//insere os parametros
             pst.setString(3,jogador.getEmail());
+            pst.setBytes(4, jogador.getImagem());
             
             pst.executeUpdate();//executa o sql no banco
             retorno = true;         
@@ -42,6 +43,7 @@ public class JogadorDAO {
                 j.setLogin(res.getString("login"));
                 j.setSenha(res.getString("senha"));
                 j.setEmail(res.getString("email"));
+                j.setImagem(res.getBytes("imagem"));
                 lista.add(j);
             }
         } catch (SQLException ex) {
@@ -70,13 +72,14 @@ public class JogadorDAO {
     
     public boolean atualizar(Jogador jogador){
         Boolean retorno;
-        String sql = "UPDATE jogador SET senha = ?, email = ? WHERE login = ?"; 
+        String sql = "UPDATE jogador SET senha = ?, email = ?, imagem = ? WHERE login = ?"; 
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
         
         try {
             pst.setString(1,jogador.getSenha());
             pst.setString(2,jogador.getEmail());
             pst.setString(3,jogador.getLogin());
+            pst.setBytes(4, jogador.getImagem());
             pst.executeUpdate();
             retorno = true;         
 
@@ -104,6 +107,7 @@ public class JogadorDAO {
                 retorno.setLogin(j.getLogin());
                 retorno.setSenha(j.getSenha());
                 retorno.setEmail(j.getEmail());
+                retorno.setImagem(j.getBytes();
             }
 
         } catch (SQLException ex) {

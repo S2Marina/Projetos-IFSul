@@ -4,6 +4,15 @@ public class Jogador {
     private String login;
     private String senha;
     private String email;
+    private byte[] imagem;
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
 
     public Integer getId() {
         return id;
