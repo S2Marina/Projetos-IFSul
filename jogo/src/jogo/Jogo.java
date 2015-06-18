@@ -8,18 +8,28 @@ import javax.swing.JOptionPane;
 import modelo.Jogador;
 import modelo.JogoCompleto;
 import modelo.Pergunta;
+import imagens.ManipularImagem;
 
 public class Jogo extends javax.swing.JFrame {
-    
+
     private Integer nivel;
     private Integer premio = 2500;
     private Jogador jogador;
     private Integer ganhos = 0;
     private Integer err;
     private Integer acert;
-    private Integer clique = 0; 
+    private Integer clique = 0;
+    private static Integer y;
     private JogoCompleto completo;
     ButtonGroup bg;
+
+    public static Integer getiY() {
+        return y;
+    }
+
+    public static void setY(Integer y) {
+        Jogo.y = y;
+    }
 
     public Jogador getJogador() {
         return jogador;
@@ -31,7 +41,7 @@ public class Jogo extends javax.swing.JFrame {
 
     List<Pergunta> perguntas;
     Pergunta at; //perguntaAtual
-       
+
     public Jogo() {
         initComponents();
         bg = new ButtonGroup();
@@ -40,6 +50,7 @@ public class Jogo extends javax.swing.JFrame {
         bg.add(btC);
         bg.add(btD);
         nivel = 1;
+        y = 0;
     }
 
     @SuppressWarnings("unchecked")
@@ -60,15 +71,22 @@ public class Jogo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         acertar = new javax.swing.JLabel();
         errar = new javax.swing.JLabel();
         parar = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -153,8 +171,6 @@ public class Jogo extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 204));
         jLabel4.setText("jogador");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/artes.png"))); // NOI18N
-
         jLabel7.setText("Errar");
 
         jLabel8.setText("Parar");
@@ -167,6 +183,9 @@ public class Jogo extends javax.swing.JFrame {
 
         parar.setText("0");
 
+        jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jLabel5.setDoubleBuffered(true);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -174,9 +193,6 @@ public class Jogo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7)
@@ -192,19 +208,22 @@ public class Jogo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
                             .addComponent(acertar))
-                        .addGap(22, 22, 22))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(22, 22, 22))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel3)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(65, 65, 65)
@@ -302,57 +321,51 @@ public class Jogo extends javax.swing.JFrame {
         PerguntaDAO dao = new PerguntaDAO();
         Audio audio = new Audio();
         ganhos = completo.getGanhos();
-        
-       //confere qual eu marquei
+
+        //confere qual eu marquei
         boolean acertou = false;
-        String x= null;
-        
-        if(btA.isSelected() == true){
+        String x = null;
+
+        if (btA.isSelected() == true) {
             x = "A";
-        }
-        else if(btB.isSelected() == true){
+        } else if (btB.isSelected() == true) {
             x = "B";
-        }
-        else if(btC.isSelected() == true){
+        } else if (btC.isSelected() == true) {
             x = "C";
-        }
-        else if(btD.isSelected() == true){
+        } else if (btD.isSelected() == true) {
             x = "D";
         }
-                     
+
         //se eu errei
-        if(!x.equals(at.getCerta())){
+        if (!x.equals(at.getCerta())) {
             acertou = false;
             JOptionPane.showMessageDialog(null, "Errada");
-            
+
             Fim f = new Fim();
             completo.setGanhos(err);
             f.completo = completo;
             f.setVisible(true);
             this.setVisible(false);
-            
-        }
-        else{
+
+        } else {
             //se eu acertei
             audio.tocar("certa.wav");
             acertou = true;
             JOptionPane.showMessageDialog(null, "Certa");
-            
+
             ganhos = ganhos + premio;
             completo.setGanhos(ganhos);
-            
+
             //passa pra proxima pergunta
             perguntas.remove(0);
-            if(clique == 3) 
-            {
-                nivel ++;
+            if (clique == 3 || clique == 6 || clique == 9 || clique == 12 || clique == 13) {
+                nivel++;
                 premio = premio * nivel;
 
-                if (nivel >= 3)
-                {
+                if (nivel == 6) {
                     completo.setGanhos(acert);
                     Fim tela = new Fim();
-                    completo.setGanhos(ganhos);   
+                    completo.setGanhos(ganhos);
                     tela.completo = completo;
                     tela.setVisible(true);
                     this.setVisible(false);
@@ -360,6 +373,7 @@ public class Jogo extends javax.swing.JFrame {
                 }
                 perguntas = dao.listarNivel(nivel);
             }
+
             at = perguntas.get(0);
 
             //mostra a proxima pergunta
@@ -368,57 +382,40 @@ public class Jogo extends javax.swing.JFrame {
             btB.setText(at.getB());
             btC.setText(at.getC());
             btD.setText(at.getD());
-            
+
             //mostrar pontuação nos labels
             //se eu acertar
-            acert  = ganhos + premio;
+            acert = ganhos + premio;
             acertar.setText(acert.toString());
-            
+
             //se eu parar
             parar.setText(ganhos.toString());
-            
+
             //se eu errar
             err = ganhos / 2;
             errar.setText(err.toString());
-            
+
             bg.clearSelection();
         }
     }//GEN-LAST:event_btConfirmaActionPerformed
 
     private void btPularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPularActionPerformed
-            PerguntaDAO dao = new PerguntaDAO();
-            perguntas.remove(0);
-            if(clique == 3)
-            { 
-                nivel ++;
-                premio = premio * nivel;
+        perguntas.remove(0);
+        
+        at = perguntas.get(0);
 
-                if (nivel >= 3)
-                {
-                    completo.setGanhos(acert);
-                    Fim tela = new Fim();
-                    completo.setGanhos(ganhos);   
-                    tela.completo = completo;                
-                    tela.setVisible(true);
-                    this.setVisible(false);
-                    return;
-                }
-                perguntas = dao.listarNivel(nivel);
-            }
-            at = perguntas.get(0);
+        lblPergunta.setText(at.getEnunciado());
+        btA.setText(at.getA());
+        btB.setText(at.getB());
+        btC.setText(at.getC());
+        btD.setText(at.getD());
 
-            lblPergunta.setText(at.getEnunciado());
-            btA.setText(at.getA());
-            btB.setText(at.getB());
-            btC.setText(at.getC());
-            btD.setText(at.getD());
-            
-            btPular.setEnabled(false);
+        btPular.setEnabled(false);
     }//GEN-LAST:event_btPularActionPerformed
 
     private void btPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPararActionPerformed
         Fim f = new Fim();
-        completo.setGanhos(ganhos);   
+        completo.setGanhos(ganhos);
         f.completo = completo;
         f.setVisible(true);
         this.setVisible(false);
@@ -426,11 +423,15 @@ public class Jogo extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         completo = new JogoCompleto();
-        
-        jLabel4.setText(jogador.getLogin());
         completo.setJogador(jogador);
+
+        btCartas.setEnabled(true);
+
+        ManipularImagem.exibiImagemLabel(jogador.getImagem(), jLabel5);
+        jLabel4.setText(jogador.getLogin());
+
         premio = 2500;
-        
+
         PerguntaDAO dao = new PerguntaDAO();
         perguntas = dao.listarNivel(nivel);
         at = perguntas.get(0);
@@ -444,48 +445,51 @@ public class Jogo extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAMouseClicked
-        
+
     }//GEN-LAST:event_btAMouseClicked
 
     private void btBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBActionPerformed
         Audio audio = new Audio();
-        if(btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true){
-           audio.tocar("certeza.wav");
+        if (btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true) {
+            audio.tocar("certeza.wav");
         }
     }//GEN-LAST:event_btBActionPerformed
 
     private void btAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAActionPerformed
-       Audio audio = new Audio();
-        if(btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true){
-           audio.tocar("certeza.wav");
+        Audio audio = new Audio();
+        if (btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true) {
+            audio.tocar("certeza.wav");
         }
     }//GEN-LAST:event_btAActionPerformed
 
     private void btCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCActionPerformed
         Audio audio = new Audio();
-        if(btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true){
-           audio.tocar("certeza.wav");
+        if (btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true) {
+            audio.tocar("certeza.wav");
         }
     }//GEN-LAST:event_btCActionPerformed
 
     private void btDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDActionPerformed
         Audio audio = new Audio();
-        if(btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true){
-           audio.tocar("certeza.wav");
+        if (btA.isSelected() == true || btB.isSelected() == true || btC.isSelected() == true || btD.isSelected() == true) {
+            audio.tocar("certeza.wav");
         }
     }//GEN-LAST:event_btDActionPerformed
 
     private void btConfirmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btConfirmaMouseClicked
-       
+
     }//GEN-LAST:event_btConfirmaMouseClicked
 
     private void btCartasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCartasActionPerformed
-       Cartas c = new Cartas();
-       c.setVisible(true);
-  
+        Cartas c = new Cartas();
+        c.setVisible(true);
     }//GEN-LAST:event_btCartasActionPerformed
 
-        public static void main(String args[]) {
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        carta(y);
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -511,71 +515,81 @@ public class Jogo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Jogo().setVisible(true);
-               }
+            }
         });
-        
-        }
-        
-         public void carta(Integer x){
-            if(x==1){
-                if(at.getCerta().equals("A")){
-                    btB.setEnabled(false);
-                }
-                else if(at.getCerta().equals("B")){
-                    btC.setEnabled(false);
-                }
-                else if(at.getCerta().equals("C")){
-                    btD.setEnabled(false);
-                }
-                else{
-                    btA.setEnabled(false);
-                }
-            }
-            else if(x==2){
-                if(at.getCerta().equals("A")){
-                    btB.setEnabled(false);
-                    btC.setEnabled(false);
-                }
-                else if(at.getCerta().equals("B")){
-                    btC.setEnabled(false);
-                    btD.setEnabled(false);
 
-                }
-                else if(at.getCerta().equals("C")){
-                    btD.setEnabled(false);
-                    btA.setEnabled(false);
+    }
 
-                }
-                else{
-                    btA.setEnabled(false);
+    public void carta(Integer x) {
+        if (x == 1) {
+            switch (at.getCerta()) {
+                case "A":
                     btB.setEnabled(false);
-                }
+                    break;
+                case "B":
+                    btC.setEnabled(false);
+                    break;
+                case "C":
+                    btD.setEnabled(false);
+                    break;
+                default:
+                    btA.setEnabled(false);
+                    break;
             }
-            else{
-                if(at.getCerta().equals("A")){
+            btCartas.setEnabled(false);
+        } else if (x == 2) {
+            switch (at.getCerta()) {
+                case "A":
                     btB.setEnabled(false);
                     btC.setEnabled(false);
-                    btD.setEnabled(false);
-                }
-                else if(at.getCerta().equals("B")){
+                    break;
+                case "B":
                     btC.setEnabled(false);
                     btD.setEnabled(false);
-                    btA.setEnabled(false);
-                }
-                else if(at.getCerta().equals("C")){
+                    break;
+                case "C":
                     btD.setEnabled(false);
                     btA.setEnabled(false);
-                    btB.setEnabled(false);
-                }
-                else{
+                    break;
+                default:
                     btA.setEnabled(false);
                     btB.setEnabled(false);
-                    btC.setEnabled(false);
-                }
+                    break;    
             }
-          btCartas.setEnabled(false);   
+            btCartas.setEnabled(false);
+        } else if (x == 3) {
+            switch (at.getCerta()) {
+                case "A":
+                    btB.setEnabled(false);
+                    btC.setEnabled(false);
+                    btD.setEnabled(false);
+                    break;
+                case "B":
+                    btC.setEnabled(false);
+                    btD.setEnabled(false);
+                    btA.setEnabled(false);
+                    break;
+                case "C":
+                    btD.setEnabled(false);
+                    btA.setEnabled(false);
+                    btB.setEnabled(false);
+                    break;
+                default:
+                    btA.setEnabled(false);
+                    btB.setEnabled(false);
+                    btC.setEnabled(false);
+                    break;
+            }
+            btCartas.setEnabled(false);
+        } else {
+            btA.setEnabled(true);
+            btB.setEnabled(true);
+            btC.setEnabled(true);
+            btD.setEnabled(true);
         }
-        
+        y = 0;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acertar;
@@ -592,7 +606,7 @@ public class Jogo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

@@ -173,6 +173,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Login e/ou senha inválidos!!!");
                 Limpar();
             }
+            
             else{
                 Jogo jogo = new Jogo();
                 jogo.setJogador(retorno);

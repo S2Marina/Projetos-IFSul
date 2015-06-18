@@ -531,6 +531,10 @@ public class perguntaManter extends javax.swing.JFrame {
             Pergunta p = new Pergunta();
             p.setId(Integer.parseInt(txtId.getText()));
             p.setEnunciado(txtEnunciado.getText());
+            p.setA(txtA.getText());
+            p.setB(txtB.getText());
+            p.setC(txtC.getText());
+            p.setD(txtD.getText());
             p.setCerta(boxCerta.getSelectedItem().toString());
             p.setNivel(Integer.parseInt(boxNivel.getSelectedItem().toString()));
             
