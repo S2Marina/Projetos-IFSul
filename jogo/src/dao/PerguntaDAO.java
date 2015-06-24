@@ -106,7 +106,7 @@ public class PerguntaDAO {
     
    public List<Pergunta> listarNivel(Integer nivel){
        List<Pergunta> retorno = new ArrayList<Pergunta>();
-       String sql ="SELECT * FROM pergunta WHERE nivel=? ORDER BY random() limit 3";
+       String sql ="SELECT * FROM pergunta WHERE nivel=? ORDER BY random()";
        PreparedStatement pst = Conexao.getPreparedStatement(sql);
        try {
            pst.setInt(1, nivel);

@@ -290,19 +290,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="acertar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="2500"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="errar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="parar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>

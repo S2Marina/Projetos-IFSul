@@ -13,7 +13,7 @@ import imagens.ManipularImagem;
 public class Jogo extends javax.swing.JFrame {
 
     private Integer nivel;
-    private Integer premio = 2500;
+    private Integer premio = 15000;
     private Jogador jogador;
     private Integer ganhos = 0;
     private Integer err;
@@ -177,12 +177,6 @@ public class Jogo extends javax.swing.JFrame {
 
         jLabel9.setText("Acertar");
 
-        acertar.setText("2500");
-
-        errar.setText("0");
-
-        parar.setText("0");
-
         jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel5.setDoubleBuffered(true);
 
@@ -316,7 +310,7 @@ public class Jogo extends javax.swing.JFrame {
 
     private void btConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmaActionPerformed
         clique++;
-        
+
         JogoCompleto completo = new JogoCompleto();
         PerguntaDAO dao = new PerguntaDAO();
         Audio audio = new Audio();
@@ -342,6 +336,7 @@ public class Jogo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Errada");
 
             Fim f = new Fim();
+            completo.setJogador(jogador);
             completo.setGanhos(err);
             f.completo = completo;
             f.setVisible(true);
@@ -353,17 +348,22 @@ public class Jogo extends javax.swing.JFrame {
             acertou = true;
             JOptionPane.showMessageDialog(null, "Certa");
 
-            ganhos = ganhos + premio;
-            completo.setGanhos(ganhos);
+            completo.setGanhos(ganhos + premio);
 
             //passa pra proxima pergunta
             perguntas.remove(0);
             if (clique == 3 || clique == 6 || clique == 9 || clique == 12 || clique == 13) {
                 nivel++;
-                premio = premio * nivel;
 
-                if (nivel == 6) {
-                    completo.setGanhos(acert);
+                if (nivel == 2) {
+                    premio = 30000;
+                } else if (nivel == 3) {
+                    premio = 50000;
+                } else if (nivel == 4) {
+                    premio = 100000;
+                } else if (nivel == 5) {
+                    premio = 415000;
+                } else if (nivel == 6) {
                     Fim tela = new Fim();
                     completo.setGanhos(ganhos);
                     tela.completo = completo;
@@ -374,10 +374,10 @@ public class Jogo extends javax.swing.JFrame {
                 perguntas = dao.listarNivel(nivel);
             }
 
-            at = perguntas.get(0);
-
+            at = perguntas.get(0);//pega pergunta atual
             //mostra a proxima pergunta
             lblPergunta.setText(at.getEnunciado());
+            
             btA.setText(at.getA());
             btB.setText(at.getB());
             btC.setText(at.getC());
@@ -385,14 +385,14 @@ public class Jogo extends javax.swing.JFrame {
 
             //mostrar pontuação nos labels
             //se eu acertar
-            acert = ganhos + premio;
+            acert = completo.getGanhos() + premio;
             acertar.setText(acert.toString());
 
             //se eu parar
-            parar.setText(ganhos.toString());
+            parar.setText(completo.getGanhos().toString());
 
             //se eu errar
-            err = ganhos / 2;
+            err = completo.getGanhos() / 2;
             errar.setText(err.toString());
 
             bg.clearSelection();
@@ -401,7 +401,7 @@ public class Jogo extends javax.swing.JFrame {
 
     private void btPularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPularActionPerformed
         perguntas.remove(0);
-        
+
         at = perguntas.get(0);
 
         lblPergunta.setText(at.getEnunciado());
@@ -430,7 +430,7 @@ public class Jogo extends javax.swing.JFrame {
         ManipularImagem.exibiImagemLabel(jogador.getImagem(), jLabel5);
         jLabel4.setText(jogador.getLogin());
 
-        premio = 2500;
+        premio = 15000;
 
         PerguntaDAO dao = new PerguntaDAO();
         perguntas = dao.listarNivel(nivel);
@@ -442,6 +442,9 @@ public class Jogo extends javax.swing.JFrame {
         btC.setText(at.getC());
         btD.setText(at.getD());
 
+        acertar.setText(premio.toString());
+        parar.setText("0");
+        errar.setText("0");
     }//GEN-LAST:event_formWindowOpened
 
     private void btAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAMouseClicked
@@ -483,6 +486,7 @@ public class Jogo extends javax.swing.JFrame {
     private void btCartasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCartasActionPerformed
         Cartas c = new Cartas();
         c.setVisible(true);
+        btCartas.setEnabled(false);
     }//GEN-LAST:event_btCartasActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -536,7 +540,6 @@ public class Jogo extends javax.swing.JFrame {
                     btA.setEnabled(false);
                     break;
             }
-            btCartas.setEnabled(false);
         } else if (x == 2) {
             switch (at.getCerta()) {
                 case "A":
@@ -554,9 +557,8 @@ public class Jogo extends javax.swing.JFrame {
                 default:
                     btA.setEnabled(false);
                     btB.setEnabled(false);
-                    break;    
+                    break;
             }
-            btCartas.setEnabled(false);
         } else if (x == 3) {
             switch (at.getCerta()) {
                 case "A":
@@ -580,12 +582,12 @@ public class Jogo extends javax.swing.JFrame {
                     btC.setEnabled(false);
                     break;
             }
-            btCartas.setEnabled(false);
         } else {
             btA.setEnabled(true);
             btB.setEnabled(true);
             btC.setEnabled(true);
             btD.setEnabled(true);
+            
         }
         y = 0;
     }
