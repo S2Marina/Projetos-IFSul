@@ -3,12 +3,34 @@ package jogo;
 import javax.swing.JOptionPane;
 
 public class Cartas extends javax.swing.JFrame {
+
     Integer x;
-    
-     public Cartas() {
+    String imagem;
+
+    public Cartas() {
         initComponents();
     }
+
+    public Integer sorteio() {
+        int num = 0 + (int) (Math.random() * 3);
         
+        if (num == 1) {
+            imagem = "/imagens/1.png";
+            x = 1;
+        } else if (num == 2) {
+            imagem = "/imagens/2.png";
+            x = 2;
+        } else if (num == 3) {
+            imagem = "/imagens/3.png";
+            x = 3;
+        } else {
+            imagem = "/imagens/0.png";
+            x = 0;
+        }
+        return x;
+    }
+
+      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -93,31 +115,33 @@ public class Cartas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/nenhum.png")));
-        JOptionPane.showMessageDialog(null, "Você não eliminou nenhuma reposta! :(");
+        x = sorteio();
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(imagem)));
+        JOptionPane.showMessageDialog(null, "Você eliminou "+ x + " reposta(s)!");
+        Jogo.setY(x);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-       jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/1.png")));
-        JOptionPane.showMessageDialog(null, "Você eliminou uma resposta!");
-        x = 1;
+        x = sorteio();
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(imagem)));
+        JOptionPane.showMessageDialog(null, "Você eliminou "+ x + " reposta(s)!");
         Jogo.setY(x);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/2.png")));
-        JOptionPane.showMessageDialog(null, "Você eliminou duas respostas!");
-        x = 2;
+        x = sorteio();
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource(imagem)));
+        JOptionPane.showMessageDialog(null, "Você eliminou "+ x + " reposta(s)!");
         Jogo.setY(x);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/3.png")));
-        JOptionPane.showMessageDialog(null, "Você eliminou três respostas!");
-        x = 3;
+        x = sorteio();
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource(imagem)));
+        JOptionPane.showMessageDialog(null, "Você eliminou "+ x + " reposta(s)!");
         Jogo.setY(x);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel4MouseClicked
@@ -153,7 +177,7 @@ public class Cartas extends javax.swing.JFrame {
         });
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

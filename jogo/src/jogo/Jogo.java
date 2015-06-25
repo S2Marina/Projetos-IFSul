@@ -13,12 +13,12 @@ import imagens.ManipularImagem;
 public class Jogo extends javax.swing.JFrame {
 
     private Integer nivel;
-    private Integer premio = 15000;
+    private Integer premio;
     private Jogador jogador;
-    private Integer ganhos = 0;
-    private Integer err;
-    private Integer acert;
+    private Integer err = 0;
+    private Integer acert = 0;
     private Integer clique = 0;
+    private Integer agora = 0;
     private static Integer y;
     private JogoCompleto completo;
     ButtonGroup bg;
@@ -188,28 +188,30 @@ public class Jogo extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(errar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(parar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(acertar))
-                        .addGap(22, 22, 22))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel7)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(errar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(49, 49, 49)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(parar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
+                            .addComponent(acertar))
+                        .addGap(22, 22, 22))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,11 +313,8 @@ public class Jogo extends javax.swing.JFrame {
     private void btConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmaActionPerformed
         clique++;
 
-        JogoCompleto completo = new JogoCompleto();
         PerguntaDAO dao = new PerguntaDAO();
         Audio audio = new Audio();
-        ganhos = completo.getGanhos();
-
         //confere qual eu marquei
         boolean acertou = false;
         String x = null;
@@ -337,7 +336,7 @@ public class Jogo extends javax.swing.JFrame {
 
             Fim f = new Fim();
             completo.setJogador(jogador);
-            completo.setGanhos(err);
+            agora = completo.getGanhos() / 2;
             f.completo = completo;
             f.setVisible(true);
             this.setVisible(false);
@@ -348,10 +347,11 @@ public class Jogo extends javax.swing.JFrame {
             acertou = true;
             JOptionPane.showMessageDialog(null, "Certa");
 
-            completo.setGanhos(ganhos + premio);
+            agora = completo.getGanhos() + premio;
 
             //passa pra proxima pergunta
             perguntas.remove(0);
+
             if (clique == 3 || clique == 6 || clique == 9 || clique == 12 || clique == 13) {
                 nivel++;
 
@@ -362,10 +362,10 @@ public class Jogo extends javax.swing.JFrame {
                 } else if (nivel == 4) {
                     premio = 100000;
                 } else if (nivel == 5) {
-                    premio = 415000;
-                } else if (nivel == 6) {
+                    premio += 315000;
+                } else {
                     Fim tela = new Fim();
-                    completo.setGanhos(ganhos);
+                    completo.setGanhos(agora);
                     tela.completo = completo;
                     tela.setVisible(true);
                     this.setVisible(false);
@@ -375,28 +375,42 @@ public class Jogo extends javax.swing.JFrame {
             }
 
             at = perguntas.get(0);//pega pergunta atual
+
             //mostra a proxima pergunta
             lblPergunta.setText(at.getEnunciado());
-            
+
             btA.setText(at.getA());
             btB.setText(at.getB());
             btC.setText(at.getC());
             btD.setText(at.getD());
+           
 
             //mostrar pontuação nos labels
-            //se eu acertar
-            acert = completo.getGanhos() + premio;
-            acertar.setText(acert.toString());
+            if (nivel == 5) {
+                btCartas.setEnabled(false);
+                btParar.setEnabled(false);
+                btPular.setEnabled(false);
+                parar.setText("0");
+                errar.setText("0");
+                acertar.setText("1000000");
+                
+            } else //se eu acertar
+            {
+                acert = agora + premio;
+                acertar.setText(acert.toString());
 
-            //se eu parar
-            parar.setText(completo.getGanhos().toString());
+                //se eu parar
+                parar.setText(agora.toString());
 
-            //se eu errar
-            err = completo.getGanhos() / 2;
-            errar.setText(err.toString());
+                //se eu errar
+                err = agora / 2;
+                errar.setText(err.toString());
+            }
 
             bg.clearSelection();
         }
+
+        completo.setGanhos(agora);
     }//GEN-LAST:event_btConfirmaActionPerformed
 
     private void btPularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPularActionPerformed
@@ -409,13 +423,15 @@ public class Jogo extends javax.swing.JFrame {
         btB.setText(at.getB());
         btC.setText(at.getC());
         btD.setText(at.getD());
+       
 
         btPular.setEnabled(false);
     }//GEN-LAST:event_btPularActionPerformed
 
     private void btPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPararActionPerformed
         Fim f = new Fim();
-        completo.setGanhos(ganhos);
+        completo.setJogador(jogador);
+        completo.setGanhos(agora);
         f.completo = completo;
         f.setVisible(true);
         this.setVisible(false);
@@ -441,6 +457,7 @@ public class Jogo extends javax.swing.JFrame {
         btB.setText(at.getB());
         btC.setText(at.getC());
         btD.setText(at.getD());
+       
 
         acertar.setText(premio.toString());
         parar.setText("0");
@@ -503,16 +520,21 @@ public class Jogo extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Jogo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Jogo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Jogo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Jogo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -587,7 +609,7 @@ public class Jogo extends javax.swing.JFrame {
             btB.setEnabled(true);
             btC.setEnabled(true);
             btD.setEnabled(true);
-            
+
         }
         y = 0;
     }

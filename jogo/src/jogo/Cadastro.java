@@ -26,6 +26,7 @@ public class Cadastro extends javax.swing.JFrame {
         txtEmail.setText(null);
         txtSenha2.setText(null);
         txtSenha.setText(null);
+        imagem.setText(null);
     }
     
     @SuppressWarnings("unchecked")
